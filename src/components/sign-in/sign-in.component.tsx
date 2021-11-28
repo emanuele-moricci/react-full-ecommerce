@@ -62,7 +62,7 @@ const SignIn = (): JSX.Element => {
 
         <div className="buttons">
           <CustomButton type="submit">Sign In</CustomButton>
-          <CustomButton googleSignIn onClick={signInWithGoogle}>
+          <CustomButton type="button" googleSignIn onClick={signInWithGoogle}>
             Sign In with Google
           </CustomButton>
         </div>
