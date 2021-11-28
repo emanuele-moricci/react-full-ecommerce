@@ -6,11 +6,20 @@ import { FirebaseApp, FirebaseOptions, initializeApp } from "firebase/app";
 import {
   Auth,
   UserCredential,
+  User,
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
-import { Firestore, getFirestore } from "firebase/firestore";
+import {
+  Firestore,
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  DocumentSnapshot,
+  DocumentData,
+} from "firebase/firestore";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -36,3 +45,30 @@ const provider: GoogleAuthProvider = new GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
 export const signInWithGoogle = (): Promise<UserCredential> =>
   signInWithPopup(auth, provider);
+
+export const createUserProfileDocument = async (
+  userAuth: User,
+  overrideName?: string
+): Promise<DocumentSnapshot<DocumentData> | null> => {
+  if (!userAuth) return null;
+
+  const userRef = doc(firestore, `users/${userAuth.uid}`);
+  const snapShot = await getDoc(userRef);
+
+  if (!snapShot.exists()) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+
+    try {
+      await setDoc(userRef, {
+        displayName: overrideName ?? displayName,
+        email,
+        createdAt,
+      });
+    } catch (error) {
+      console.log("Error creating user: ", error);
+    }
+  }
+
+  return snapShot;
+};

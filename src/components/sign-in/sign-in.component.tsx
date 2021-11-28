@@ -1,11 +1,12 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 
-import { signInWithGoogle } from "../../db/firebase.utils";
+import { auth, signInWithGoogle } from "../../db/firebase.utils";
 
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 
 import "./sign-in.styles.scss";
+import { signInWithEmailAndPassword } from "@firebase/auth";
 
 const SignIn = (): JSX.Element => {
   const [email, setEmail] = useState<string>(""),
@@ -24,10 +25,16 @@ const SignIn = (): JSX.Element => {
           throw new Error("No config found for this input name");
       }
     },
-    submitFn = (e: FormEvent<HTMLFormElement>): void => {
+    submitFn = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
       e.preventDefault();
-      setEmail("");
-      setPassword("");
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        setEmail("");
+        setPassword("");
+      } catch (error) {
+        console.log(error);
+      }
     };
 
   return (
@@ -37,6 +44,7 @@ const SignIn = (): JSX.Element => {
 
       <form onSubmit={submitFn}>
         <FormInput
+          type="email"
           name="email"
           value={email}
           handleChange={changeFn}
@@ -44,6 +52,7 @@ const SignIn = (): JSX.Element => {
           required
         />
         <FormInput
+          type="password"
           name="password"
           value={password}
           handleChange={changeFn}
