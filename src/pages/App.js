@@ -1,14 +1,29 @@
-import Routes from "./routes";
+import { useState, useEffect } from "react";
+
+import { auth } from "../db/firebase.utils";
 
 import Header from "../components/header/header.component";
+import Routes from "./routes";
 
-function App() {
+const App = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    let unsubFromAuth = auth.onAuthStateChanged((authUser) => {
+      setUser(authUser);
+    });
+
+    return () => {
+      unsubFromAuth();
+    };
+  }, []);
+
   return (
     <div>
-      <Header />
+      <Header user={user} />
       <Routes />
     </div>
   );
-}
+};
 
 export default App;

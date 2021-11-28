@@ -1,5 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 
+import { signInWithGoogle } from "../../db/firebase.utils";
+
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 
@@ -49,9 +51,12 @@ const SignIn = (): JSX.Element => {
           required
         />
 
-        <CustomButton type="submit" value="Submit Form">
-          SIGN IN
-        </CustomButton>
+        <div className="buttons">
+          <CustomButton type="submit">Sign In</CustomButton>
+          <CustomButton googleSignIn onClick={signInWithGoogle}>
+            Sign In with Google
+          </CustomButton>
+        </div>
       </form>
     </div>
   );
