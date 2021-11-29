@@ -1,12 +1,19 @@
 import { useState } from "react";
 
-import MenuItem from "../menu-item/menu-item.component";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { selectSections } from "../../redux/directory/directory.selectors";
+import { Section } from "../../redux/directory/directory.types";
 
-import sections, { Section } from "./directory.sections";
+import MenuItem from "../menu-item/menu-item.component";
 
 import "./directory.styles.scss";
 
-const Directory = (): JSX.Element => {
+interface IDirectoryProps {
+  sections: Section[];
+}
+
+const Directory = ({ sections }: IDirectoryProps): JSX.Element => {
   const [dirSections] = useState<Section[]>(sections);
 
   return (
@@ -18,4 +25,8 @@ const Directory = (): JSX.Element => {
   );
 };
 
-export default Directory;
+const mapStateToProps = createStructuredSelector({
+  sections: selectSections,
+});
+
+export default connect(mapStateToProps)(Directory);
