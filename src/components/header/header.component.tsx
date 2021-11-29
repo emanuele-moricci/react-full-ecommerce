@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
-import { RootState } from "../../redux/root.store";
+import { createStructuredSelector } from "reselect";
 import { User } from "../../redux/user/user.types";
+import { selectCartHidden } from "../../redux/cart/cart.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 import { auth } from "../../db/firebase.utils";
 
@@ -46,9 +48,9 @@ const Header = ({ user, hidden }: IHeaderProps): JSX.Element => {
   );
 };
 
-const mapStateToProps = ({ user, cart: { hidden } }: RootState) => ({
-  user: user.user,
-  hidden,
+const mapStateToProps = createStructuredSelector({
+  user: selectCurrentUser,
+  hidden: selectCartHidden,
 });
 
 export default connect(mapStateToProps)(Header);

@@ -1,8 +1,9 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import { connect } from "react-redux";
-import { RootState } from "../redux/root.store";
+import { createStructuredSelector } from "reselect";
 import { User } from "../redux/user/user.types";
+import { selectCurrentUser } from "../redux/user/user.selectors";
 
 import Home from "./home/home.component";
 import Shop from "./shop/shop.component";
@@ -22,8 +23,8 @@ const ProjectRoutes = ({ user }: IRoutesProps) => {
   );
 };
 
-const mapStateToProps = ({ user }: RootState) => ({
-  user: user.user,
+const mapStateToProps = createStructuredSelector({
+  user: selectCurrentUser,
 });
 
 export default connect(mapStateToProps)(ProjectRoutes);
