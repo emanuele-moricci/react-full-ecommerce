@@ -1,6 +1,9 @@
 import { User } from "@firebase/auth";
 import { Link } from "react-router-dom";
 
+import { connect } from "react-redux";
+import { RootState } from "../../redux/root.store";
+
 import { auth } from "../../db/firebase.utils";
 
 import { ReactComponent as Logo } from "../../assets/img/crown.svg";
@@ -37,4 +40,8 @@ const Header = ({ user }: IHeader): JSX.Element => {
   );
 };
 
-export default Header;
+const mapStateToProps = ({ user }: RootState) => ({
+  user: user.user,
+});
+
+export default connect(mapStateToProps)(Header);
