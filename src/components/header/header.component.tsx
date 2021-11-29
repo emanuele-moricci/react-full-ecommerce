@@ -6,14 +6,18 @@ import { User } from "../../redux/user/user.types";
 
 import { auth } from "../../db/firebase.utils";
 
+import CartIcon from "../cart-icon/cart-icon.component";
+import CartDropdown from "../cart-dropdown/cart-dropdown.component";
+
 import { ReactComponent as Logo } from "../../assets/img/crown.svg";
 import "./header.styles.scss";
 
 interface IHeaderProps {
   user?: User;
+  hidden: boolean;
 }
 
-const Header = ({ user }: IHeaderProps): JSX.Element => {
+const Header = ({ user, hidden }: IHeaderProps): JSX.Element => {
   return (
     <div className="header">
       <Link to="/" className="logo-container">
@@ -35,13 +39,16 @@ const Header = ({ user }: IHeaderProps): JSX.Element => {
             SIGN IN
           </Link>
         )}
+        <CartIcon />
       </div>
+      {!hidden && <CartDropdown />}
     </div>
   );
 };
 
-const mapStateToProps = ({ user }: RootState) => ({
+const mapStateToProps = ({ user, cart: { hidden } }: RootState) => ({
   user: user.user,
+  hidden,
 });
 
 export default connect(mapStateToProps)(Header);

@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { User } from "../redux/user/user.types";
-import { setUser } from "../redux/user/user.action";
+import { setUser } from "../redux/user/user.actions";
 
 import { auth, createUserProfileDocument } from "../db/firebase.utils";
 
