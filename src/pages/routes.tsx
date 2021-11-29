@@ -7,6 +7,7 @@ import { selectCurrentUser } from "../redux/user/user.selectors";
 
 import Home from "./home/home.component";
 import Shop from "./shop/shop.component";
+import Collection from "./collection/collection.component";
 import Auth from "./auth/auth.component";
 import Checkout from "./checkout/checkout.component";
 
@@ -19,6 +20,7 @@ const ProjectRoutes = ({ user }: IRoutesProps) => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/shop" element={<Shop />} />
+      <Route path="/shop/:collection" element={<Collection />} />
       <Route path="/auth" element={user ? <Navigate to="/" /> : <Auth />} />
       <Route path="/checkout" element={<Checkout />} />
     </Routes>
