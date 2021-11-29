@@ -6,7 +6,7 @@ const Collection = (): JSX.Element => {
   let { collection } = useParams();
 
   return (
-    <div className="collection">
+    <div className="collection-page">
       <h2>{collection?.toUpperCase()} PAGE</h2>
     </div>
   );
