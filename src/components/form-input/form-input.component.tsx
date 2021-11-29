@@ -2,7 +2,7 @@ import { ChangeEvent, InputHTMLAttributes } from "react";
 
 import "./form-input.styles.scss";
 
-interface IFormInput extends InputHTMLAttributes<HTMLInputElement> {
+interface IFormInputProps extends InputHTMLAttributes<HTMLInputElement> {
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
   label?: string;
 }
@@ -11,7 +11,7 @@ const FormInput = ({
   handleChange,
   label,
   ...props
-}: IFormInput): JSX.Element => (
+}: IFormInputProps): JSX.Element => (
   <div className="group">
     <input className="form-input" onChange={handleChange} {...props} />
     {label ? (

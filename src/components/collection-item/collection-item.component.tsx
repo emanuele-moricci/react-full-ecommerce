@@ -2,13 +2,13 @@ import { Item } from "../../pages/shop/shop.collections";
 
 import "./collection-item.styles.scss";
 
-interface ICollectionItem extends Item {}
+interface ICollectionItemProps extends Item {}
 
 const CollectionItem = ({
   name,
   price,
   imageUrl,
-}: ICollectionItem): JSX.Element => (
+}: ICollectionItemProps): JSX.Element => (
   <div className="collection-item">
     <div className="image" style={{ backgroundImage: `url(${imageUrl})` }} />
     <div className="collection-footer">

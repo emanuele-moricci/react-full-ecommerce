@@ -3,12 +3,12 @@ import CollectionItem from "../collection-item/collection-item.component";
 
 import "./collection-preview.styles.scss";
 
-interface ICollectionPreview extends Collection {}
+interface ICollectionPreviewProps extends Collection {}
 
 const CollectionPreview = ({
   title,
   items,
-}: ICollectionPreview): JSX.Element => (
+}: ICollectionPreviewProps): JSX.Element => (
   <div className="collection-preview">
     <h1 className="title">{title.toUpperCase()}</h1>
     <div className="preview">

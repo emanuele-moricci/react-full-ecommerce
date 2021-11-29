@@ -10,11 +10,11 @@ import { auth, createUserProfileDocument } from "../db/firebase.utils";
 import Header from "../components/header/header.component";
 import Routes from "./routes";
 
-interface IApp {
+interface IAppProps {
   setUser: (user: User | null) => void;
 }
 
-const App = ({ setUser }: IApp) => {
+const App = ({ setUser }: IAppProps) => {
   useEffect(() => {
     let unsubFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
