@@ -23,24 +23,24 @@ export const removeItem = (
   cartItems: CartItem[],
   cartItemToRemove: Item
 ): CartItem[] => {
-  return cartItems.filter((cartItems) => cartItems.id !== cartItemToRemove.id);
+  const existingCartItem = cartItems.find(
+    (cartItem) => cartItem.id === cartItemToRemove.id
+  );
+
+  if (existingCartItem?.quantity === 1) {
+    return removeItem(cartItems, cartItemToRemove);
+  }
+
+  return cartItems.map((cartItem) =>
+    cartItem.id === cartItemToRemove.id
+      ? { ...cartItem, quantity: cartItem.quantity - 1 }
+      : cartItem
+  );
 };
 
 export const deleteItemFromCart = (
   cartItems: CartItem[],
   cartItemToDelete: Item
 ): CartItem[] => {
-  const existingCartItem = cartItems.find(
-    (cartItem) => cartItem.id === cartItemToDelete.id
-  );
-
-  if (existingCartItem?.quantity === 1) {
-    return removeItem(cartItems, cartItemToDelete);
-  }
-
-  return cartItems.map((cartItem) =>
-    cartItem.id === cartItemToDelete.id
-      ? { ...cartItem, quantity: cartItem.quantity - 1 }
-      : cartItem
-  );
+  return cartItems.filter((cartItems) => cartItems.id !== cartItemToDelete.id);
 };
