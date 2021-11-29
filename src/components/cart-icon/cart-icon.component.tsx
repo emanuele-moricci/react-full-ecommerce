@@ -1,3 +1,4 @@
+import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { toggleCartDropdown } from "../../redux/cart/cart.actions";
 
@@ -15,7 +16,7 @@ const CartIcon = ({ toggleCartDropdown }: ICartIconProps) => (
   </div>
 );
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   toggleCartDropdown: () => dispatch(toggleCartDropdown()),
 });
 
