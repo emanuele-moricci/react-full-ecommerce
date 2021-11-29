@@ -1,4 +1,4 @@
-import { Item } from "../../pages/shop/shop.collections";
+import { Item } from "../shop/shop.types";
 import { CartItem } from "./cart.types";
 
 export const addItem = (

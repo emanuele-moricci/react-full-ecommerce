@@ -1,4 +1,4 @@
-import { Item } from "../../pages/shop/shop.collections";
+import { Item } from "../../redux/shop/shop.types";
 
 import { Dispatch } from "redux";
 import { connect } from "react-redux";

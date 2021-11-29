@@ -1,9 +1,17 @@
 import { useState } from "react";
 
-import collections, { Collection } from "./shop.collections";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { selectCollections } from "../../redux/shop/shop.selectors";
+import { Collection } from "../../redux/shop/shop.types";
+
 import CollectionPreview from "../../components/collection-preview/collection-preview.component";
 
-const Shop = (): JSX.Element => {
+interface IShopProps {
+  collections: Collection[];
+}
+
+const Shop = ({ collections }: IShopProps): JSX.Element => {
   const [shopCollections] = useState<Collection[]>(collections);
 
   return (
@@ -15,4 +23,8 @@ const Shop = (): JSX.Element => {
   );
 };
 
-export default Shop;
+const mapStateToProps = createStructuredSelector({
+  collections: selectCollections,
+});
+
+export default connect(mapStateToProps)(Shop);

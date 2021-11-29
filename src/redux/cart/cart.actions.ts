@@ -1,5 +1,4 @@
-import { Item } from "../../pages/shop/shop.collections";
-
+import { Item } from "../shop/shop.types";
 import { CartActionTypes } from "./cart.types";
 
 export const toggleCartDropdown = () => ({

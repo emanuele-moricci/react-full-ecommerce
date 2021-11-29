@@ -37,11 +37,11 @@ const INITIAL_STATE = {
   ],
 };
 
-const cartReducer = (state = INITIAL_STATE, { type }: AnyAction) => {
+const directoryReducer = (state = INITIAL_STATE, { type }: AnyAction) => {
   switch (type) {
     default:
       return state;
   }
 };
 
-export default cartReducer;
+export default directoryReducer;
