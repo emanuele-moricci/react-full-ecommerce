@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
 import { CartActionTypes } from "./cart.types";
-import { addItemToCart } from "./cart.utils";
+import { addItemToCart, removeItemFromCart } from "./cart.utils";
 
 const INITIAL_STATE = {
   hidden: true,
@@ -18,6 +18,11 @@ const cartReducer = (state = INITIAL_STATE, { type, payload }: AnyAction) => {
       return {
         ...state,
         items: addItemToCart(state.items, payload),
+      };
+    case CartActionTypes.REMOVE_ITEM:
+      return {
+        ...state,
+        items: removeItemFromCart(state.items, payload),
       };
     default:
       return state;
