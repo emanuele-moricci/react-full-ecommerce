@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import { selectCollection } from "../../redux/shop/shop.selectors";
-import { Collection } from "../../redux/shop/shop.types";
+import { selectCollection } from "../../../redux/shop/shop.selectors";
+import { Collection } from "../../../redux/shop/shop.types";
 
 import CollectionItem from "../collection-item/collection-item.component";
 

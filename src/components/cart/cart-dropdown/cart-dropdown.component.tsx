@@ -2,13 +2,13 @@ import { NavigateFunction, useNavigate } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { toggleCartDropdown } from "../../redux/cart/cart.actions";
-import { CartItem as CartItemType } from "../../redux/cart/cart.types";
-import { selectItems } from "../../redux/cart/cart.selectors";
+import { toggleCartDropdown } from "../../../redux/cart/cart.actions";
+import { CartItem as CartItemType } from "../../../redux/cart/cart.types";
+import { selectItems } from "../../../redux/cart/cart.selectors";
 import { Dispatch } from "redux";
 
 import CartItem from "../cart-item/cart-item.component";
-import CustomButton from "../custom-button/custom-button.component";
+import CustomButton from "../../form/custom-button/custom-button.component";
 
 import "./cart-dropdown.styles.scss";
 

@@ -1,10 +1,10 @@
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { toggleCartDropdown } from "../../redux/cart/cart.actions";
-import { selectItemsCount } from "../../redux/cart/cart.selectors";
+import { toggleCartDropdown } from "../../../redux/cart/cart.actions";
+import { selectItemsCount } from "../../../redux/cart/cart.selectors";
 
-import { ReactComponent as ShoppingIcon } from "../../assets/img/shopping-bag.svg";
+import { ReactComponent as ShoppingIcon } from "../../../assets/img/shopping-bag.svg";
 import "./cart-icon.styles.scss";
 
 interface ICartIconProps {

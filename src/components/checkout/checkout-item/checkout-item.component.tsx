@@ -4,8 +4,8 @@ import {
   addItem,
   removeItem,
   deleteItemFromCart,
-} from "../../redux/cart/cart.actions";
-import { CartItem } from "../../redux/cart/cart.types";
+} from "../../../redux/cart/cart.actions";
+import { CartItem } from "../../../redux/cart/cart.types";
 
 import "./checkout-item.styles.scss";
 

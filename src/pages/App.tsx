@@ -7,7 +7,7 @@ import { setUser } from "../redux/user/user.actions";
 
 import { auth, createUserProfileDocument } from "../db/firebase.utils";
 
-import Header from "../components/header/header.component";
+import Header from "../components/layout/header/header.component";
 import Routes from "./routes";
 
 interface IAppProps {

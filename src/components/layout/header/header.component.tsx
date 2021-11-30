@@ -2,16 +2,16 @@ import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { User } from "../../redux/user/user.types";
-import { selectCartHidden } from "../../redux/cart/cart.selectors";
-import { selectCurrentUser } from "../../redux/user/user.selectors";
+import { User } from "../../../redux/user/user.types";
+import { selectCartHidden } from "../../../redux/cart/cart.selectors";
+import { selectCurrentUser } from "../../../redux/user/user.selectors";
 
-import { auth } from "../../db/firebase.utils";
+import { auth } from "../../../db/firebase.utils";
 
-import CartIcon from "../cart-icon/cart-icon.component";
-import CartDropdown from "../cart-dropdown/cart-dropdown.component";
+import CartIcon from "../../cart/cart-icon/cart-icon.component";
+import CartDropdown from "../../cart/cart-dropdown/cart-dropdown.component";
 
-import { ReactComponent as Logo } from "../../assets/img/crown.svg";
+import { ReactComponent as Logo } from "../../../assets/img/crown.svg";
 import "./header.styles.scss";
 
 interface IHeaderProps {
