@@ -5,11 +5,11 @@ import { createStructuredSelector } from "reselect";
 import { User } from "../redux/user/user.types";
 import { selectCurrentUser } from "../redux/user/user.selectors";
 
-import Home from "./home/home.component";
-import Shop from "./shop/shop.component";
-import Collection from "./collection/collection.component";
-import Auth from "./auth/auth.component";
-import Checkout from "./checkout/checkout.component";
+import Home from "./home/home.page";
+import Shop from "./shop/shop.page";
+import Collection from "./collection/collection.page";
+import Auth from "./auth/auth.page";
+import Checkout from "./checkout/checkout.page";
 
 interface IRoutesProps {
   user?: User;
