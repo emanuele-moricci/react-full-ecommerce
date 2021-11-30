@@ -9,7 +9,6 @@ const Collection = (props: any): JSX.Element => {
 
   return (
     <div className="collection-page">
-      <h2>{collection?.toUpperCase()} PAGE</h2>
       <CollectionOverview collectionId={collection ?? ""} />
     </div>
   );

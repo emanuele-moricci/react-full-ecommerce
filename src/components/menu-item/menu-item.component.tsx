@@ -14,7 +14,7 @@ const MenuItem = ({
   linkUrl,
 }: IMenuItemProps): JSX.Element => {
   const navigate: NavigateFunction = useNavigate(),
-    navigateFn = (): void => navigate(`shop/${linkUrl}/${id}`);
+    navigateFn = (): void => navigate(`${linkUrl}`);
 
   return (
     <div className={`${size} menu-item`} onClick={navigateFn}>
