@@ -11,3 +11,7 @@ export type Collection = {
   routeName: string;
   items: Item[];
 };
+
+export type CollectionList = {
+  [key: string]: Collection;
+};
