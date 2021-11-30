@@ -1,7 +1,7 @@
 import { createSelector } from "reselect";
 
-import { RootState } from "../root.store";
-import { Section } from "./directory.types";
+import { RootState } from "src/redux/root.store";
+import { Section } from "src/redux/directory/directory.types";
 
 const selectDirectory = (state: RootState) => state.directory;
 

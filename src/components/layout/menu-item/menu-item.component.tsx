@@ -1,6 +1,6 @@
 import { NavigateFunction, useNavigate } from "react-router-dom";
 
-import { Section } from "../../../redux/directory/directory.types";
+import { Section } from "src/redux/directory/directory.types";
 
 import "./menu-item.styles.scss";
 

@@ -1,5 +1,5 @@
-import { Item } from "../shop/shop.types";
-import { CartActionTypes } from "./cart.types";
+import { Item } from "src/redux/shop/shop.types";
+import { CartActionTypes } from "src/redux/cart/cart.types";
 
 export const toggleCartDropdown = () => ({
   type: CartActionTypes.TOGGLE_CART_DROPDOWN,

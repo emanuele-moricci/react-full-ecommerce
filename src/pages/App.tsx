@@ -1,20 +1,20 @@
 import { useEffect } from "react";
 
-import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { User } from "../redux/user/user.types";
-import { setUser } from "../redux/user/user.actions";
+import { connect } from "react-redux";
+import { User } from "src/redux/user/user.types";
+import { setUser } from "src/redux/user/user.actions";
 
-import { auth, createUserProfileDocument } from "../db/firebase.utils";
+import { auth, createUserProfileDocument } from "src/db/firebase.utils";
 
-import Header from "../components/layout/header/header.component";
-import Routes from "./routes";
+import Header from "src/components/layout/header/header.component";
+import Routes from "src/pages/routes";
 
 interface IAppProps {
   setUser: (user: User | null) => void;
 }
 
-const App = ({ setUser }: IAppProps) => {
+const App = ({ setUser }: IAppProps): JSX.Element => {
   useEffect(() => {
     let unsubFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {

@@ -1,10 +1,10 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { createUserWithEmailAndPassword } from "@firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
-import FormInput from "../../form/form-input/form-input.component";
-import CustomButton from "../../form/custom-button/custom-button.component";
+import { auth, createUserProfileDocument } from "src/db/firebase.utils";
 
-import { auth, createUserProfileDocument } from "../../../db/firebase.utils";
+import FormInput from "src/components/form/form-input/form-input.component";
+import CustomButton from "src/components/form/custom-button/custom-button.component";
 
 import "./sign-up.styles.scss";
 

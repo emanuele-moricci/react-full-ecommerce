@@ -1,11 +1,11 @@
-import { connect } from "react-redux";
 import { Dispatch } from "redux";
+import { connect } from "react-redux";
+import { CartItem } from "src/redux/cart/cart.types";
 import {
   addItem,
   removeItem,
   deleteItemFromCart,
-} from "../../../redux/cart/cart.actions";
-import { CartItem } from "../../../redux/cart/cart.types";
+} from "src/redux/cart/cart.actions";
 
 import "./checkout-item.styles.scss";
 

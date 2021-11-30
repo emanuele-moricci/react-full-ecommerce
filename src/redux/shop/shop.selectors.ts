@@ -1,7 +1,7 @@
 import { createSelector } from "reselect";
-import { RootState } from "../root.store";
+import { RootState } from "src/redux/root.store";
 
-import { Collection, CollectionList } from "./shop.types";
+import { Collection, CollectionList } from "src/redux/shop/shop.types";
 
 const selectShop = (state: RootState) => state.shop;
 

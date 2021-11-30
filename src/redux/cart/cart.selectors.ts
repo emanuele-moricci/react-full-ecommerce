@@ -1,7 +1,7 @@
 import { createSelector } from "reselect";
-import { RootState } from "../root.store";
 
-import { CartItem } from "./cart.types";
+import { RootState } from "src/redux/root.store";
+import { CartItem } from "src/redux/cart/cart.types";
 
 // Weirdly, the following selectors are not working as expected.
 // This is a momentary workaround.

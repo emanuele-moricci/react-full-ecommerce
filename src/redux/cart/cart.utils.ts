@@ -1,5 +1,5 @@
-import { Item } from "../shop/shop.types";
-import { CartItem } from "./cart.types";
+import { Item } from "src/redux/shop/shop.types";
+import { CartItem } from "src/redux/cart/cart.types";
 
 export const addItem = (
   cartItems: CartItem[],

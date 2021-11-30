@@ -1,4 +1,4 @@
-import { Item } from "../shop/shop.types";
+import { Item } from "src/redux/shop/shop.types";
 
 export const CartActionTypes = {
   TOGGLE_CART_DROPDOWN: "TOGGLE_CART_DROPDOWN",

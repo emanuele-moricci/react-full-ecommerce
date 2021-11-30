@@ -1,6 +1,10 @@
 import { AnyAction } from "redux";
-import { CartActionTypes } from "./cart.types";
-import { addItem, removeItem, deleteItemFromCart } from "./cart.utils";
+import { CartActionTypes } from "src/redux/cart/cart.types";
+import {
+  addItem,
+  removeItem,
+  deleteItemFromCart,
+} from "src/redux/cart/cart.utils";
 
 const INITIAL_STATE = {
   hidden: true,

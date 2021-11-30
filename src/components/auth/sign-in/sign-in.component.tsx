@@ -1,12 +1,12 @@
 import { ChangeEvent, FormEvent, useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
-import { auth, signInWithGoogle } from "../../../db/firebase.utils";
+import { auth, signInWithGoogle } from "src/db/firebase.utils";
 
-import FormInput from "../../form/form-input/form-input.component";
-import CustomButton from "../../form/custom-button/custom-button.component";
+import FormInput from "src/components/form/form-input/form-input.component";
+import CustomButton from "src/components/form/custom-button/custom-button.component";
 
 import "./sign-in.styles.scss";
-import { signInWithEmailAndPassword } from "@firebase/auth";
 
 const SignIn = (): JSX.Element => {
   const [email, setEmail] = useState<string>(""),

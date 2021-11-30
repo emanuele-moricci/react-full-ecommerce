@@ -1,6 +1,6 @@
-import { Collection } from "../../../redux/shop/shop.types";
+import { Collection } from "src/redux/shop/shop.types";
 
-import CollectionItem from "../collection-item/collection-item.component";
+import CollectionItem from "src/components/collection/collection-item/collection-item.component";
 
 import "./collection-preview.styles.scss";
 
