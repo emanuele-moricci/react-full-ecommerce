@@ -1,8 +1,9 @@
 import { createSelector } from "reselect";
 
+import { RootState } from "../root.store";
 import { Section } from "./directory.types";
 
-const selectDirectory = (state: any) => state.directory;
+const selectDirectory = (state: RootState) => state.directory;
 
 export const selectSections = createSelector(
   [selectDirectory],

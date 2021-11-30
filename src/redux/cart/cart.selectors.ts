@@ -1,8 +1,18 @@
 import { createSelector } from "reselect";
+import { RootState } from "../root.store";
 
 import { CartItem } from "./cart.types";
 
-const selectCart = (state: any) => state.cart;
+// Weirdly, the following selectors are not working as expected.
+// This is a momentary workaround.
+type CartState = Omit<RootState, "cart"> & {
+  cart: {
+    hidden: boolean;
+    items: CartItem[];
+  };
+};
+
+const selectCart = (state: CartState) => state.cart;
 
 export const selectItems = createSelector([selectCart], (cart) => cart.items);
 

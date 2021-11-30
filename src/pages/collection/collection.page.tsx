@@ -4,7 +4,7 @@ import CollectionOverview from "../../components/collection/collection-overview/
 
 import "./collection.styles.scss";
 
-const Collection = (props: any): JSX.Element => {
+const Collection = (): JSX.Element => {
   let { collection } = useParams();
 
   return (
