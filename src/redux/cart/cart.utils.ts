@@ -8,11 +8,15 @@ export const addItem = (
   const existingCartItem = cartItems.find(
     (cartItem) => cartItem.id === cartItemToAdd.id
   );
+
+  console.log("cartItemToAdd", cartItemToAdd);
+  console.log("existingCartItem", existingCartItem);
+
   if (existingCartItem) {
     return cartItems.map((cartItem) =>
       cartItem.id === cartItemToAdd.id
         ? { ...cartItem, quantity: cartItem.quantity + 1 }
-        : { ...cartItem, quantity: 1 }
+        : cartItem
     );
   }
 
