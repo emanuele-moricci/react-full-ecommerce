@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import {
   auth,
   convertCollectionsSnapshotToMap,
@@ -46,7 +46,8 @@ const App = ({ setUser, updateCollections }: IAppProps): JSX.Element => {
     });
 
     const collectionRef = collection(firestore, "collections");
-    let unsubFromSnap = onSnapshot(collectionRef, async (snapshot) => {
+
+    getDocs(collectionRef).then((snapshot) => {
       const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
 
       updateCollections(collectionsMap);
@@ -54,7 +55,6 @@ const App = ({ setUser, updateCollections }: IAppProps): JSX.Element => {
 
     return () => {
       unsubFromAuth();
-      unsubFromSnap();
     };
   }, [setUser, updateCollections]);
 
