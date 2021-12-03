@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 
-import CollectionOverview from "src/components/collection/collection-overview/collection-overview.component";
+import CollectionOverviewContainer from "src/components/collection/collection-overview/collection-overview.container";
 
 import * as Styled from "./collection.styles";
 
@@ -9,7 +9,7 @@ const Collection = (): JSX.Element => {
 
   return (
     <Styled.CollectionPage>
-      <CollectionOverview collectionId={collection ?? ""} />
+      <CollectionOverviewContainer collectionId={collection ?? ""} />
     </Styled.CollectionPage>
   );
 };
