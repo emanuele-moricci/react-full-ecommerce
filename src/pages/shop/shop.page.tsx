@@ -1,10 +1,12 @@
 import CollectionsOverview from "src/components/collection/collections-overview/collections-overview.component";
 
+import * as Styled from "./shop.styles";
+
 const Shop = (): JSX.Element => {
   return (
-    <div className="shop-page">
+    <Styled.ShopPage>
       <CollectionsOverview />
-    </div>
+    </Styled.ShopPage>
   );
 };
 

@@ -1,6 +1,6 @@
 import { ChangeEvent, InputHTMLAttributes } from "react";
 
-import "./form-input.styles.scss";
+import * as Styled from "./form-input.styles";
 
 interface IFormInputProps extends InputHTMLAttributes<HTMLInputElement> {
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -12,14 +12,14 @@ const FormInput = ({
   label,
   ...props
 }: IFormInputProps): JSX.Element => (
-  <div className="group">
-    <input className="form-input" onChange={handleChange} {...props} />
+  <Styled.GroupContainer>
+    <Styled.FormInput onChange={handleChange} {...props} />
     {label ? (
-      <label className={`${props.value ? "shrink" : ""} form-input-label`}>
+      <Styled.FormInputLabel shrink={props.value === "shrink"}>
         {label}
-      </label>
+      </Styled.FormInputLabel>
     ) : null}
-  </div>
+  </Styled.GroupContainer>
 );
 
 export default FormInput;

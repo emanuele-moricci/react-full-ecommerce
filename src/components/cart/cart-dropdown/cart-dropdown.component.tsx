@@ -10,7 +10,7 @@ import { toggleCartDropdown } from "src/redux/cart/cart.actions";
 import CartItem from "src/components/cart/cart-item/cart-item.component";
 import CustomButton from "src/components/form/custom-button/custom-button.component";
 
-import "./cart-dropdown.styles.scss";
+import * as Styled from "./cart-dropdown.styles";
 
 interface ICartDropdownProps {
   items: CartItemType[];
@@ -22,14 +22,14 @@ const CartDropdown = ({ items, dispatch }: ICartDropdownProps) => {
     navigateFn = (): void => navigate(`checkout`);
 
   return (
-    <div className="cart-dropdown">
-      <div className="cart-items">
+    <Styled.CartDropdown>
+      <Styled.CartItems>
         {items.length ? (
           items.map((item) => <CartItem key={item.id} item={item} />)
         ) : (
-          <span className="empty-message">Your cart is empty</span>
+          <Styled.EmptyMessage>Your cart is empty</Styled.EmptyMessage>
         )}
-      </div>
+      </Styled.CartItems>
       <CustomButton
         onClick={() => {
           navigateFn();
@@ -38,7 +38,7 @@ const CartDropdown = ({ items, dispatch }: ICartDropdownProps) => {
       >
         GO TO CHECKOUT
       </CustomButton>
-    </div>
+    </Styled.CartDropdown>
   );
 };
 

@@ -2,15 +2,15 @@ import { useParams } from "react-router-dom";
 
 import CollectionOverview from "src/components/collection/collection-overview/collection-overview.component";
 
-import "./collection.styles.scss";
+import * as Styled from "./collection.styles";
 
 const Collection = (): JSX.Element => {
   let { collection } = useParams();
 
   return (
-    <div className="collection-page">
+    <Styled.CollectionPage>
       <CollectionOverview collectionId={collection ?? ""} />
-    </div>
+    </Styled.CollectionPage>
   );
 };
 

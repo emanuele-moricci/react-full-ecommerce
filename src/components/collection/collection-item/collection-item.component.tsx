@@ -5,7 +5,7 @@ import { addItem } from "src/redux/cart/cart.actions";
 
 import CustomButton from "src/components/form/custom-button/custom-button.component";
 
-import "./collection-item.styles.scss";
+import * as Styled from "./collection-item.styles";
 
 interface ICollectionItemProps {
   item: Item;
@@ -18,16 +18,16 @@ const CollectionItem = ({
 }: ICollectionItemProps): JSX.Element => {
   const { imageUrl, name, price } = item;
   return (
-    <div className="collection-item">
-      <div className="image" style={{ backgroundImage: `url(${imageUrl})` }} />
-      <div className="collection-footer">
-        <span className="name">{name}</span>
-        <span className="price">${price}</span>
-      </div>
+    <Styled.CollectionItem>
+      <Styled.Image className="image" imageUrl={imageUrl} />
+      <Styled.CollectionFooter>
+        <Styled.Name>{name}</Styled.Name>
+        <Styled.Price>${price}</Styled.Price>
+      </Styled.CollectionFooter>
       <CustomButton inverted onClick={() => addItem(item)}>
         Add to cart
       </CustomButton>
-    </div>
+    </Styled.CollectionItem>
   );
 };
 

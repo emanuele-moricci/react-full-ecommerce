@@ -4,8 +4,7 @@ import { createStructuredSelector } from "reselect";
 import { selectItemsCount } from "src/redux/cart/cart.selectors";
 import { toggleCartDropdown } from "src/redux/cart/cart.actions";
 
-import { ReactComponent as ShoppingIcon } from "src/assets/img/shopping-bag.svg";
-import "./cart-icon.styles.scss";
+import * as Styled from "./cart-icon.styles";
 
 interface ICartIconProps {
   toggleCartDropdown: () => void;
@@ -13,10 +12,10 @@ interface ICartIconProps {
 }
 
 const CartIcon = ({ toggleCartDropdown, itemCount }: ICartIconProps) => (
-  <div className="cart-icon" onClick={toggleCartDropdown}>
-    <ShoppingIcon className="shopping-icon" />
-    <span className="item-count"> {itemCount}</span>
-  </div>
+  <Styled.CartIcons onClick={toggleCartDropdown}>
+    <Styled.ShoppingIcon />
+    <Styled.ItemCount> {itemCount}</Styled.ItemCount>
+  </Styled.CartIcons>
 );
 
 const mapStateToProps = createStructuredSelector({

@@ -6,7 +6,7 @@ import { auth, createUserProfileDocument } from "src/db/firebase.utils";
 import FormInput from "src/components/form/form-input/form-input.component";
 import CustomButton from "src/components/form/custom-button/custom-button.component";
 
-import "./sign-up.styles.scss";
+import * as Styled from "./sign-up.styles";
 
 const SignUp = (): JSX.Element => {
   const [name, setName] = useState<string>(""),
@@ -60,10 +60,10 @@ const SignUp = (): JSX.Element => {
     };
 
   return (
-    <div className="sign-up">
-      <h2 className="title">I do not have an account</h2>
+    <Styled.SignUp>
+      <Styled.Title>I do not have an account</Styled.Title>
       <span>Sign up with your email and password</span>
-      <form className="sign-up-form" onSubmit={submitFn}>
+      <Styled.SignUpForm onSubmit={submitFn}>
         <FormInput
           type="text"
           name="name"
@@ -93,8 +93,8 @@ const SignUp = (): JSX.Element => {
           handleChange={changeFn}
         />
         <CustomButton type="submit">SIGN UP</CustomButton>
-      </form>
-    </div>
+      </Styled.SignUpForm>
+    </Styled.SignUp>
   );
 };
 

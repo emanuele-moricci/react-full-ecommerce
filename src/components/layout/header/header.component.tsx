@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { User } from "src/redux/user/user.types";
@@ -12,7 +10,7 @@ import CartIcon from "src/components/cart/cart-icon/cart-icon.component";
 import CartDropdown from "src/components/cart/cart-dropdown/cart-dropdown.component";
 
 import { ReactComponent as Logo } from "src/assets/img/crown.svg";
-import "./header.styles.scss";
+import * as Styled from "./header.styles";
 
 interface IHeaderProps {
   user?: User;
@@ -21,30 +19,24 @@ interface IHeaderProps {
 
 const Header = ({ user, hidden }: IHeaderProps): JSX.Element => {
   return (
-    <div className="header">
-      <Link to="/" className="logo-container">
+    <Styled.HeaderContainer>
+      <Styled.LogoContainer to="/">
         <Logo className="logo" />
-      </Link>
-      <div className="options">
-        <Link className="option" to="/shop">
-          SHOP
-        </Link>
-        <Link className="option" to="/shop">
-          CONTACT
-        </Link>
+      </Styled.LogoContainer>
+      <Styled.OptionsContainer>
+        <Styled.OptionLink to="/shop">SHOP</Styled.OptionLink>
+        <Styled.OptionLink to="/shop">CONTACT</Styled.OptionLink>
         {user ? (
-          <div className="option" onClick={() => auth.signOut()}>
+          <Styled.OptionLink as="div" onClick={() => auth.signOut()}>
             SIGN OUT
-          </div>
+          </Styled.OptionLink>
         ) : (
-          <Link className="option" to="/auth">
-            SIGN IN
-          </Link>
+          <Styled.OptionLink to="/auth">SIGN IN</Styled.OptionLink>
         )}
         <CartIcon />
-      </div>
+      </Styled.OptionsContainer>
       {!hidden && <CartDropdown />}
-    </div>
+    </Styled.HeaderContainer>
   );
 };
 

@@ -5,7 +5,7 @@ import { selectCollection } from "src/redux/shop/shop.selectors";
 
 import CollectionItem from "src/components/collection/collection-item/collection-item.component";
 
-import "./collection-overview.styles.scss";
+import * as Styled from "./collection-overview.styles";
 
 interface ICollectionOverviewProps {
   collectionId: string;
@@ -20,14 +20,14 @@ const CollectionOverview = ({
   const { title, items } = foundCollection;
 
   return (
-    <div className="collection-page">
-      <h2 className="title">{title}</h2>
-      <div className="items">
+    <Styled.CollectionOverview>
+      <Styled.Title>{title}</Styled.Title>
+      <Styled.Items>
         {items.map((item) => (
           <CollectionItem key={item.id} item={item} />
         ))}
-      </div>
-    </div>
+      </Styled.Items>
+    </Styled.CollectionOverview>
   );
 };
 

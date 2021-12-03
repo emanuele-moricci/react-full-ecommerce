@@ -2,12 +2,11 @@ import { NavigateFunction, useNavigate } from "react-router-dom";
 
 import { Section } from "src/redux/directory/directory.types";
 
-import "./menu-item.styles.scss";
+import * as Styled from "./menu-item.styles";
 
 interface IMenuItemProps extends Section {}
 
 const MenuItem = ({
-  id,
   title,
   imageUrl,
   size,
@@ -17,16 +16,20 @@ const MenuItem = ({
     navigateFn = (): void => navigate(`${linkUrl}`);
 
   return (
-    <div className={`${size} menu-item`} onClick={navigateFn}>
-      <div
+    <Styled.MenuItemContainer size={size} onClick={navigateFn}>
+      <Styled.BackgroundImage
         className="background-image"
-        style={{ backgroundImage: `url(${imageUrl})` }}
+        imageUrl={imageUrl}
       />
-      <div className="content">
-        <h1 className="title">{title.toUpperCase()}</h1>
-        <span className="subtitle">SHOP NOW</span>
-      </div>
-    </div>
+      <Styled.ContentContainer className="content">
+        <Styled.ContentTitle className="title">
+          {title.toUpperCase()}
+        </Styled.ContentTitle>
+        <Styled.ContentSubtitle className="subtitle">
+          SHOP NOW
+        </Styled.ContentSubtitle>
+      </Styled.ContentContainer>
+    </Styled.MenuItemContainer>
   );
 };
 

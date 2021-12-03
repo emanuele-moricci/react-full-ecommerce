@@ -7,7 +7,7 @@ import {
   deleteItemFromCart,
 } from "src/redux/cart/cart.actions";
 
-import "./checkout-item.styles.scss";
+import * as Styled from "./checkout-item.styles";
 
 interface ICheckoutItemProps {
   item: CartItem;
@@ -23,25 +23,21 @@ const CheckoutItem = ({
   deleteItemFromCart,
 }: ICheckoutItemProps) => {
   return (
-    <div className="checkout-item">
-      <div className="image-container">
+    <Styled.CheckoutItem>
+      <Styled.ImageContainer>
         <img alt="item" src={item.imageUrl} />
-      </div>
-      <span className="name">{item.name}</span>
-      <span className="quantity">
-        <span className="arrow" onClick={() => removeItem(item)}>
-          &#10094;
-        </span>
-        <span className="value">{item.quantity}</span>
-        <span className="arrow" onClick={() => addItem(item)}>
-          &#10095;
-        </span>
-      </span>
-      <span className="price">{item.price}</span>
-      <div className="remove-button" onClick={() => deleteItemFromCart(item)}>
+      </Styled.ImageContainer>
+      <Styled.Name>{item.name}</Styled.Name>
+      <Styled.Quantity>
+        <Styled.Arrow onClick={() => removeItem(item)}>&#10094;</Styled.Arrow>
+        <Styled.Value>{item.quantity}</Styled.Value>
+        <Styled.Arrow onClick={() => addItem(item)}>&#10095;</Styled.Arrow>
+      </Styled.Quantity>
+      <Styled.Price>{item.price}</Styled.Price>
+      <Styled.RemoveButton onClick={() => deleteItemFromCart(item)}>
         &#10005;
-      </div>
-    </div>
+      </Styled.RemoveButton>
+    </Styled.CheckoutItem>
   );
 };
 

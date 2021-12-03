@@ -6,7 +6,7 @@ import { auth, signInWithGoogle } from "src/db/firebase.utils";
 import FormInput from "src/components/form/form-input/form-input.component";
 import CustomButton from "src/components/form/custom-button/custom-button.component";
 
-import "./sign-in.styles.scss";
+import * as Styled from "./sign-in.styles";
 
 const SignIn = (): JSX.Element => {
   const [email, setEmail] = useState<string>(""),
@@ -38,11 +38,11 @@ const SignIn = (): JSX.Element => {
     };
 
   return (
-    <div className="sign-in">
-      <h2>I already have an account</h2>
+    <Styled.SignIn>
+      <Styled.Title>I already have an account</Styled.Title>
       <span>Sign in with your email and password</span>
 
-      <form onSubmit={submitFn}>
+      <Styled.SignInForm onSubmit={submitFn}>
         <FormInput
           type="email"
           name="email"
@@ -60,14 +60,14 @@ const SignIn = (): JSX.Element => {
           required
         />
 
-        <div className="buttons">
+        <Styled.Buttons>
           <CustomButton type="submit">Sign In</CustomButton>
           <CustomButton type="button" googleSignIn onClick={signInWithGoogle}>
             Sign In with Google
           </CustomButton>
-        </div>
-      </form>
-    </div>
+        </Styled.Buttons>
+      </Styled.SignInForm>
+    </Styled.SignIn>
   );
 };
 

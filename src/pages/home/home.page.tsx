@@ -1,11 +1,11 @@
 import Directory from "src/components/directory/directory.component";
 
-import "./home.styles.scss";
+import * as Styled from "./home.styles";
 
 const Home = (): JSX.Element => (
-  <div className="homepage">
+  <Styled.HomePage>
     <Directory />
-  </div>
+  </Styled.HomePage>
 );
 
 export default Home;

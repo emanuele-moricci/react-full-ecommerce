@@ -6,7 +6,7 @@ import { selectItems, selectCartTotal } from "src/redux/cart/cart.selectors";
 import CheckoutItem from "src/components/checkout/checkout-item/checkout-item.component";
 import StripeCheckoutButton from "src/components/checkout/stripe-button/stripe-button.component";
 
-import "./checkout.styles.scss";
+import * as Styled from "./checkout.styles";
 
 interface ICheckoutProps {
   items: CartItem[];
@@ -15,37 +15,37 @@ interface ICheckoutProps {
 
 const Checkout = ({ items, total }: ICheckoutProps): JSX.Element => {
   return (
-    <div className="checkout-page">
-      <div className="checkout-header">
-        <div className="header-block">
+    <Styled.CheckoutPage>
+      <Styled.CheckoutHeader>
+        <Styled.HeaderBlock>
           <span>Product</span>
-        </div>
-        <div className="header-block">
+        </Styled.HeaderBlock>
+        <Styled.HeaderBlock>
           <span>Description</span>
-        </div>
-        <div className="header-block">
+        </Styled.HeaderBlock>
+        <Styled.HeaderBlock>
           <span>Quantity</span>
-        </div>
-        <div className="header-block">
+        </Styled.HeaderBlock>
+        <Styled.HeaderBlock>
           <span>Price</span>
-        </div>
-        <div className="header-block">
+        </Styled.HeaderBlock>
+        <Styled.HeaderBlock>
           <span>Remove</span>
-        </div>
-      </div>
+        </Styled.HeaderBlock>
+      </Styled.CheckoutHeader>
       {items.map((item) => (
         <CheckoutItem key={item.id} item={item} />
       ))}
-      <div className="total">
+      <Styled.Total>
         <span>TOTAL: ${total}</span>
-      </div>
-      <div className="test-warning">
+      </Styled.Total>
+      <Styled.TestWarning>
         *Please use the following test credit card for payments*
         <br />
         4242 4242 4242 4242 - Exp: 01/29 - CVV: 123
-      </div>
+      </Styled.TestWarning>
       <StripeCheckoutButton price={total} />
-    </div>
+    </Styled.CheckoutPage>
   );
 };
 

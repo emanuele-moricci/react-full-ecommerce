@@ -5,7 +5,7 @@ import { selectCollections } from "src/redux/shop/shop.selectors";
 
 import CollectionPreview from "src/components/collection/collection-preview/collection-preview.component";
 
-import "./collections-overview.styles.scss";
+import * as Styled from "./collections-overview.styles";
 
 interface ICollectionOverviewProps {
   collections: Collection[];
@@ -14,11 +14,11 @@ interface ICollectionOverviewProps {
 const CollectionOverview = ({
   collections,
 }: ICollectionOverviewProps): JSX.Element => (
-  <div className="collections-overview">
+  <Styled.CollectionsOverview>
     {collections.map((collection) => (
       <CollectionPreview key={collection.id} {...collection} />
     ))}
-  </div>
+  </Styled.CollectionsOverview>
 );
 
 const mapStateToProps = createStructuredSelector({
