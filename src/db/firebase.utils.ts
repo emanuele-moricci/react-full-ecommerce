@@ -19,6 +19,8 @@ import {
   setDoc,
   DocumentSnapshot,
   DocumentData,
+  collection,
+  writeBatch,
 } from "firebase/firestore";
 
 // Your web app's Firebase configuration
@@ -71,4 +73,19 @@ export const createUserProfileDocument = async (
   }
 
   return snapShot;
+};
+
+export const addCollectionAndDocuments = async (
+  collectionKey: string,
+  objectsToAdd: object[]
+) => {
+  const collectionRef = collection(firestore, collectionKey);
+
+  const batch = writeBatch(firestore);
+  objectsToAdd.forEach((obj) => {
+    const newDocRef = doc(collectionRef);
+    batch.set(newDocRef, obj);
+  });
+
+  return await batch.commit();
 };
