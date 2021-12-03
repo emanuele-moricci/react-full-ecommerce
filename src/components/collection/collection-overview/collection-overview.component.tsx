@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
-
 import { connect } from "react-redux";
 import { RootState } from "src/redux/root.store";
 import { Collection } from "src/redux/shop/shop.types";
-import { selectCollection } from "src/redux/shop/shop.selectors";
+import {
+  selectCollection,
+  selectIsFetching,
+} from "src/redux/shop/shop.selectors";
 
 import CollectionItem from "src/components/collection/collection-item/collection-item.component";
 
@@ -14,17 +15,13 @@ import * as Styled from "./collection-overview.styles";
 interface ICollectionOverviewProps {
   collectionId: string;
   foundCollection?: Collection | null;
+  loading?: boolean;
 }
 
 const CollectionOverview = ({
   foundCollection,
+  loading,
 }: ICollectionOverviewProps): JSX.Element => {
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setLoading(!foundCollection);
-  }, [foundCollection]);
-
   return WithSpinner(
     <Styled.CollectionOverview>
       <Styled.Title>{foundCollection?.title}</Styled.Title>
@@ -34,7 +31,7 @@ const CollectionOverview = ({
         ))}
       </Styled.Items>
     </Styled.CollectionOverview>
-  )(loading);
+  )(loading ?? false);
 };
 
 const mapStateToProps = (
@@ -42,6 +39,7 @@ const mapStateToProps = (
   { collectionId }: ICollectionOverviewProps
 ) => ({
   foundCollection: selectCollection(collectionId)(state),
+  loading: selectIsFetching(state),
 });
 
 export default connect(mapStateToProps)(CollectionOverview);

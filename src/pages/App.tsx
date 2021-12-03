@@ -1,29 +1,26 @@
 import { useEffect } from "react";
 
-import { collection, getDocs } from "firebase/firestore";
-import {
-  auth,
-  convertCollectionsSnapshotToMap,
-  createUserProfileDocument,
-  firestore,
-} from "src/db/firebase.utils";
+import { auth, createUserProfileDocument } from "src/db/firebase.utils";
 
-import { Dispatch } from "redux";
+import { Action } from "redux";
+import { ThunkDispatch } from "redux-thunk";
 import { connect } from "react-redux";
 import { User } from "src/redux/user/user.types";
 import { setUser } from "src/redux/user/user.actions";
-import { CollectionList } from "src/redux/shop/shop.types";
-import { updateCollections } from "src/redux/shop/shop.actions";
+import { fetchCollectionsStartAsync } from "src/redux/shop/shop.actions";
 
 import Header from "src/components/layout/header/header.component";
 import Routes from "src/pages/routes";
 
 interface IAppProps {
   setUser: (user: User | null) => void;
-  updateCollections: (collectionsMap: CollectionList) => void;
+  fetchCollectionsStartAsync: () => void;
 }
 
-const App = ({ setUser, updateCollections }: IAppProps): JSX.Element => {
+const App = ({
+  setUser,
+  fetchCollectionsStartAsync,
+}: IAppProps): JSX.Element => {
   useEffect(() => {
     let unsubFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -45,18 +42,12 @@ const App = ({ setUser, updateCollections }: IAppProps): JSX.Element => {
       }
     });
 
-    const collectionRef = collection(firestore, "collections");
-
-    getDocs(collectionRef).then((snapshot) => {
-      const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-
-      updateCollections(collectionsMap);
-    });
+    fetchCollectionsStartAsync();
 
     return () => {
       unsubFromAuth();
     };
-  }, [setUser, updateCollections]);
+  }, [setUser, fetchCollectionsStartAsync]);
 
   return (
     <div>
@@ -66,10 +57,9 @@ const App = ({ setUser, updateCollections }: IAppProps): JSX.Element => {
   );
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
+const mapDispatchToProps = (dispatch: ThunkDispatch<{}, void, Action>) => ({
   setUser: (user: User | null) => dispatch(setUser(user)),
-  updateCollections: (collectionsMap: CollectionList) =>
-    dispatch(updateCollections(collectionsMap)),
+  fetchCollectionsStartAsync: () => dispatch(fetchCollectionsStartAsync()),
 });
 
 export default connect(null, mapDispatchToProps)(App);
