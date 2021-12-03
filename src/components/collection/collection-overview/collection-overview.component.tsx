@@ -9,7 +9,7 @@ import * as Styled from "./collection-overview.styles";
 
 interface ICollectionOverviewProps {
   collectionId: string;
-  foundCollection?: Collection;
+  foundCollection?: Collection | null;
 }
 
 const CollectionOverview = ({

@@ -1,3 +1,7 @@
+export const ShopActionTypes = {
+  UPDATE_COLLECTIONS: "UPDATE_COLLECTIONS",
+};
+
 export type Item = {
   id: number;
   name: string;
@@ -6,7 +10,7 @@ export type Item = {
 };
 
 export type Collection = {
-  id: number;
+  id: string;
   title: string;
   routeName: string;
   items: Item[];

@@ -21,7 +21,9 @@ import {
   DocumentData,
   collection,
   writeBatch,
+  QuerySnapshot,
 } from "firebase/firestore";
+import { Collection, CollectionList } from "src/redux/shop/shop.types";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -73,6 +75,29 @@ export const createUserProfileDocument = async (
   }
 
   return snapShot;
+};
+
+export const convertCollectionsSnapshotToMap = (
+  collections: QuerySnapshot<DocumentData>
+): CollectionList => {
+  const transformedCollection: Collection[] = collections.docs.map((doc) => {
+    const { title, items } = doc.data();
+
+    return {
+      routeName: encodeURI(title.toLowerCase()),
+      id: doc.id,
+      title,
+      items,
+    };
+  });
+
+  return transformedCollection.reduce(
+    (acc: { [key: string]: typeof coll }, coll) => {
+      acc[coll.title.toLowerCase()] = coll;
+      return acc;
+    },
+    {}
+  );
 };
 
 export const addCollectionAndDocuments = async (
