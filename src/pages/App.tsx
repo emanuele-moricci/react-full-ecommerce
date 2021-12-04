@@ -7,20 +7,17 @@ import { ThunkDispatch } from "redux-thunk";
 import { connect } from "react-redux";
 import { User } from "src/redux/user/user.types";
 import { setUser } from "src/redux/user/user.actions";
-import { fetchCollectionsStartAsync } from "src/redux/shop/shop.actions";
+import { fetchCollectionsStart } from "src/redux/shop/shop.actions";
 
 import Header from "src/components/layout/header/header.component";
 import Routes from "src/pages/routes";
 
 interface IAppProps {
   setUser: (user: User | null) => void;
-  fetchCollectionsStartAsync: () => void;
+  fetchCollectionsStart: () => void;
 }
 
-const App = ({
-  setUser,
-  fetchCollectionsStartAsync,
-}: IAppProps): JSX.Element => {
+const App = ({ setUser, fetchCollectionsStart }: IAppProps): JSX.Element => {
   useEffect(() => {
     let unsubFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -42,12 +39,12 @@ const App = ({
       }
     });
 
-    fetchCollectionsStartAsync();
+    fetchCollectionsStart();
 
     return () => {
       unsubFromAuth();
     };
-  }, [setUser, fetchCollectionsStartAsync]);
+  }, [setUser, fetchCollectionsStart]);
 
   return (
     <div>
@@ -59,7 +56,7 @@ const App = ({
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<{}, void, Action>) => ({
   setUser: (user: User | null) => dispatch(setUser(user)),
-  fetchCollectionsStartAsync: () => dispatch(fetchCollectionsStartAsync()),
+  fetchCollectionsStart: () => dispatch(fetchCollectionsStart()),
 });
 
 export default connect(null, mapDispatchToProps)(App);
