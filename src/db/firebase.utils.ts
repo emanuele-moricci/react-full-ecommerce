@@ -3,7 +3,13 @@ import { FirebaseApp, FirebaseOptions, initializeApp } from "firebase/app";
 
 // Add SDKs for Firebase products that you want to use here
 // https://firebase.google.com/docs/web/setup#available-libraries
-import { Auth, User, getAuth, GoogleAuthProvider } from "firebase/auth";
+import {
+  Auth,
+  User,
+  getAuth,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+} from "firebase/auth";
 import {
   Firestore,
   getFirestore,
@@ -107,4 +113,18 @@ export const addCollectionAndDocuments = async (
   });
 
   return await batch.commit();
+};
+
+// User related functions
+export const getCurrentUser = (): Promise<User | null> => {
+  return new Promise((resolve, reject) => {
+    const unsub = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsub();
+        resolve(userAuth);
+      },
+      reject
+    );
+  });
 };

@@ -1,6 +1,7 @@
 import {
   auth,
   createUserProfileDocument,
+  getCurrentUser,
   googleProvider,
 } from "src/db/firebase.utils";
 import {
@@ -28,7 +29,15 @@ import { getErrorMessage } from "src/utils/functions";
 /* ∨∨∨∨ START FUNCTIONS ∨∨∨∨ */
 
 export function* userSagas() {
-  yield all([call(onGoogleSignInStart), call(onEmailSignInStart)]);
+  yield all([
+    call(onCheckUserSession),
+    call(onGoogleSignInStart),
+    call(onEmailSignInStart),
+  ]);
+}
+
+export function* onCheckUserSession() {
+  yield takeLatest(UserActionTypes.CHECK_USER_SESSION, checkUserSession);
 }
 
 export function* onGoogleSignInStart() {
@@ -40,6 +49,17 @@ export function* onEmailSignInStart() {
 }
 
 /* ^^^^ START FUNCTIONS ^^^^ */
+
+function* checkUserSession(): Generator {
+  try {
+    const userAuth = (yield getCurrentUser()) as User | null;
+    if (!userAuth) return;
+
+    yield getSnapshotFromUserAuth(userAuth);
+  } catch (error) {
+    yield put(SignInFailure(getErrorMessage(error)));
+  }
+}
 
 /* ∨∨∨∨ AUTH FUNCTIONS ∨∨∨∨ */
 
