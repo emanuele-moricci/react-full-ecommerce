@@ -10,8 +10,9 @@ import {
 } from "src/db/firebase.utils";
 
 import {
-  takeLatest,
+  all,
   call,
+  takeLatest,
   put,
   CallEffect,
   PutEffect,
@@ -23,12 +24,20 @@ import {
   fetchCollectionsSuccess,
 } from "./shop.actions";
 
-export function* fetchCollectionsStart() {
+/* ∨∨∨∨ START FUNCTIONS ∨∨∨∨ */
+
+export function* shopSagas() {
+  yield all([call(onFetchCollectionsStart)]);
+}
+
+export function* onFetchCollectionsStart() {
   yield takeLatest(
     ShopActionTypes.FETCH_COLLECTIONS_START,
     fetchCollectionsAsync
   );
 }
+
+/* ^^^^ START FUNCTIONS ^^^^ */
 
 export function* fetchCollectionsAsync(): Generator<
   Promise<QuerySnapshot<DocumentData>> | CallEffect<CollectionList> | PutEffect
