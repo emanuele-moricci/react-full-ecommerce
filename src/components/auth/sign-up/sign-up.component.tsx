@@ -1,14 +1,19 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
 
-import { auth, createUserProfileDocument } from "src/db/firebase.utils";
+import { Dispatch } from "redux";
+import { connect } from "react-redux";
+import { signUpStart } from "src/redux/user/user.actions";
 
 import FormInput from "src/components/form/form-input/form-input.component";
 import CustomButton from "src/components/form/custom-button/custom-button.component";
 
 import * as Styled from "./sign-up.styles";
 
-const SignUp = (): JSX.Element => {
+interface ISignUpProps {
+  signUpStart: (name: string, email: string, password: string) => void;
+}
+
+const SignUp = ({ signUpStart }: ISignUpProps): JSX.Element => {
   const [name, setName] = useState<string>(""),
     [email, setEmail] = useState<string>(""),
     [password, setPassword] = useState<string>(""),
@@ -41,22 +46,7 @@ const SignUp = (): JSX.Element => {
         return;
       }
 
-      try {
-        const { user } = await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-
-        await createUserProfileDocument(user, name);
-
-        setName("");
-        setEmail("");
-        setPassword("");
-        setConfPwd("");
-      } catch (error) {
-        console.log(error);
-      }
+      signUpStart(name, email, password);
     };
 
   return (
@@ -98,4 +88,9 @@ const SignUp = (): JSX.Element => {
   );
 };
 
-export default SignUp;
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  signUpStart: (name: string, email: string, password: string) =>
+    dispatch(signUpStart({ name, email, password })),
+});
+
+export default connect(null, mapDispatchToProps)(SignUp);

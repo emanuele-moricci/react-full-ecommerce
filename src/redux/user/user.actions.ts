@@ -1,4 +1,9 @@
-import { UserActionTypes, User, UserLogin } from "src/redux/user/user.types";
+import {
+  UserActionTypes,
+  User,
+  UserLogin,
+  UserRegister,
+} from "src/redux/user/user.types";
 
 export const checkUserSession = () => ({
   type: UserActionTypes.CHECK_USER_SESSION,
@@ -20,6 +25,21 @@ export const signInSuccess = (user: User) => ({
 
 export const signInFailure = (msg: string) => ({
   type: UserActionTypes.SIGN_IN_FAILURE,
+  payload: msg,
+});
+
+export const signUpStart = (userRegister: UserRegister) => ({
+  type: UserActionTypes.SIGN_UP_START,
+  payload: userRegister,
+});
+
+export const signUpSuccess = (user: User) => ({
+  type: UserActionTypes.SIGN_UP_SUCCESS,
+  payload: user,
+});
+
+export const signUpFailure = (msg: string) => ({
+  type: UserActionTypes.SIGN_UP_FAILURE,
   payload: msg,
 });
 

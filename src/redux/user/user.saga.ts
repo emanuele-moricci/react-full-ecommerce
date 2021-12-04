@@ -9,6 +9,7 @@ import {
   UserCredential,
   signInWithEmailAndPassword,
   User,
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { DocumentData, DocumentSnapshot } from "firebase/firestore";
 
@@ -22,7 +23,13 @@ import {
 } from "@redux-saga/core/effects";
 import { CallEffect } from "redux-saga/effects";
 import { UserActionTypes } from "./user.types";
-import { signInSuccess, signInFailure, signOutSuccess } from "./user.actions";
+import {
+  signInSuccess,
+  signInFailure,
+  signOutSuccess,
+  signOutFailure,
+  signUpSuccess,
+} from "./user.actions";
 
 import { getErrorMessage } from "src/utils/functions";
 
@@ -31,6 +38,7 @@ import { getErrorMessage } from "src/utils/functions";
 export function* userSagas() {
   yield all([
     call(onCheckUserSession),
+    call(onSignUpStart),
     call(onSignOutStart),
     call(onGoogleSignInStart),
     call(onEmailSignInStart),
@@ -39,6 +47,10 @@ export function* userSagas() {
 
 export function* onCheckUserSession() {
   yield takeLatest(UserActionTypes.CHECK_USER_SESSION, checkUserSession);
+}
+
+export function* onSignUpStart() {
+  yield takeLatest(UserActionTypes.SIGN_UP_START, signUp);
 }
 
 export function* onSignOutStart() {
@@ -84,8 +96,25 @@ function* signOut(): Generator<Promise<void> | PutEffect> {
 
 /* ∨∨∨∨ AUTH FUNCTIONS ∨∨∨∨ */
 
+function* signUp({
+  payload: { name, email, password },
+}: AnyAction): Generator<Promise<UserCredential> | Generator | PutEffect> {
+  try {
+    const { user } = (yield createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    )) as UserCredential;
+
+    yield getSnapshotFromUserAuth(user, name);
+  } catch (error) {
+    yield put(signOutFailure(getErrorMessage(error)));
+  }
+}
+
 function* getSnapshotFromUserAuth(
-  userAuth: User
+  userAuth: User,
+  registrationName: string | undefined = undefined
 ): Generator<
   | Promise<UserCredential>
   | CallEffect<DocumentSnapshot<DocumentData> | null>
@@ -94,14 +123,16 @@ function* getSnapshotFromUserAuth(
   try {
     const userSnap = (yield call(
       createUserProfileDocument,
-      userAuth
+      userAuth,
+      registrationName
     )) as DocumentSnapshot<DocumentData> | null;
     if (!userSnap) throw new Error("User not found in the database.");
 
     const userData = userSnap.data();
 
+    const successFunction = registrationName ? signUpSuccess : signInSuccess;
     yield put(
-      signInSuccess({
+      successFunction({
         id: userSnap ? userSnap.id : "",
         displayName: userData?.displayName,
         createdAt: userData?.createdAt,
