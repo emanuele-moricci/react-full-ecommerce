@@ -1,21 +1,4 @@
 import {
-  all,
-  call,
-  takeLatest,
-  put,
-  PutEffect,
-} from "@redux-saga/core/effects";
-import { CallEffect } from "redux-saga/effects";
-
-import { UserActionTypes } from "./user.types";
-import {
-  googleSignInSuccess,
-  googleSignInFailure,
-  emailSignInSuccess,
-  emailSignInFailure,
-} from "./user.actions";
-
-import {
   auth,
   createUserProfileDocument,
   googleProvider,
@@ -24,9 +7,23 @@ import {
   signInWithPopup,
   UserCredential,
   signInWithEmailAndPassword,
+  User,
 } from "firebase/auth";
 import { DocumentData, DocumentSnapshot } from "firebase/firestore";
+
 import { AnyAction } from "redux";
+import {
+  all,
+  call,
+  takeLatest,
+  put,
+  PutEffect,
+} from "@redux-saga/core/effects";
+import { CallEffect } from "redux-saga/effects";
+import { UserActionTypes } from "./user.types";
+import { SignInSuccess, SignInFailure } from "./user.actions";
+
+import { getErrorMessage } from "src/utils/functions";
 
 /* ∨∨∨∨ START FUNCTIONS ∨∨∨∨ */
 
@@ -44,26 +41,26 @@ export function* onEmailSignInStart() {
 
 /* ^^^^ START FUNCTIONS ^^^^ */
 
-function* signInWithGoogle(): Generator<
+/* ∨∨∨∨ AUTH FUNCTIONS ∨∨∨∨ */
+
+function* getSnapshotFromUserAuth(
+  userAuth: User
+): Generator<
   | Promise<UserCredential>
   | CallEffect<DocumentSnapshot<DocumentData> | null>
   | PutEffect
 > {
   try {
-    const { user } = (yield signInWithPopup(
-      auth,
-      googleProvider
-    )) as UserCredential;
     const userSnap = (yield call(
       createUserProfileDocument,
-      user
+      userAuth
     )) as DocumentSnapshot<DocumentData> | null;
     if (!userSnap) throw new Error("User not found in the database.");
 
     const userData = userSnap.data();
 
     yield put(
-      googleSignInSuccess({
+      SignInSuccess({
         id: userSnap ? userSnap.id : "",
         displayName: userData?.displayName,
         createdAt: userData?.createdAt,
@@ -71,44 +68,37 @@ function* signInWithGoogle(): Generator<
       })
     );
   } catch (error) {
-    const msg = error instanceof Error ? error.message : "";
+    yield put(SignInFailure(getErrorMessage(error)));
+  }
+}
 
-    yield put(googleSignInFailure(msg));
+function* signInWithGoogle(): Generator {
+  try {
+    const { user } = (yield signInWithPopup(
+      auth,
+      googleProvider
+    )) as UserCredential;
+
+    yield getSnapshotFromUserAuth(user);
+  } catch (error) {
+    yield put(SignInFailure(getErrorMessage(error)));
   }
 }
 
 function* signInWithEmail({
   payload: { email, password },
-}: AnyAction): Generator<
-  | Promise<UserCredential>
-  | CallEffect<DocumentSnapshot<DocumentData> | null>
-  | PutEffect
-> {
+}: AnyAction): Generator {
   try {
     const { user } = (yield signInWithEmailAndPassword(
       auth,
       email,
       password
     )) as UserCredential;
-    const userSnap = (yield call(
-      createUserProfileDocument,
-      user
-    )) as DocumentSnapshot<DocumentData> | null;
-    if (!userSnap) throw new Error("User not found in the database.");
 
-    const userData = userSnap.data();
-
-    yield put(
-      emailSignInSuccess({
-        id: userSnap ? userSnap.id : "",
-        displayName: userData?.displayName,
-        createdAt: userData?.createdAt,
-        email: userData?.email,
-      })
-    );
+    yield getSnapshotFromUserAuth(user);
   } catch (error) {
-    const msg = error instanceof Error ? error.message : "";
-
-    yield put(emailSignInFailure(msg));
+    yield put(SignInFailure(getErrorMessage(error)));
   }
 }
+
+/* ^^^^ AUTH FUNCTIONS ^^^^ */
