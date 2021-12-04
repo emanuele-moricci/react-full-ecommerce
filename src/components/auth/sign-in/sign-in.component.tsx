@@ -1,10 +1,10 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "src/db/firebase.utils";
-
 import { connect } from "react-redux";
-import { googleSignInStart } from "src/redux/user/user.actions";
+import {
+  googleSignInStart,
+  emailSignInStart,
+} from "src/redux/user/user.actions";
 
 import FormInput from "src/components/form/form-input/form-input.component";
 import CustomButton from "src/components/form/custom-button/custom-button.component";
@@ -13,10 +13,14 @@ import * as Styled from "./sign-in.styles";
 import { Dispatch } from "redux";
 
 interface ISignInProps {
-  googleSignInStart: () => void;
+  onGoogleSignInStart: () => void;
+  onEmailSignInStart: (email: string, password: string) => void;
 }
 
-const SignIn = ({ googleSignInStart }: ISignInProps): JSX.Element => {
+const SignIn = ({
+  onGoogleSignInStart,
+  onEmailSignInStart,
+}: ISignInProps): JSX.Element => {
   const [email, setEmail] = useState<string>(""),
     [password, setPassword] = useState<string>(""),
     changeFn = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -36,13 +40,7 @@ const SignIn = ({ googleSignInStart }: ISignInProps): JSX.Element => {
     submitFn = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
       e.preventDefault();
 
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-        setEmail("");
-        setPassword("");
-      } catch (error) {
-        console.log(error);
-      }
+      onEmailSignInStart(email, password);
     };
 
   return (
@@ -70,7 +68,11 @@ const SignIn = ({ googleSignInStart }: ISignInProps): JSX.Element => {
 
         <Styled.Buttons>
           <CustomButton type="submit">Sign In</CustomButton>
-          <CustomButton type="button" googleSignIn onClick={googleSignInStart}>
+          <CustomButton
+            type="button"
+            googleSignIn
+            onClick={onGoogleSignInStart}
+          >
             Sign In with Google
           </CustomButton>
         </Styled.Buttons>
@@ -80,7 +82,9 @@ const SignIn = ({ googleSignInStart }: ISignInProps): JSX.Element => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  googleSignInStart: () => dispatch(googleSignInStart()),
+  onGoogleSignInStart: () => dispatch(googleSignInStart()),
+  onEmailSignInStart: (email: string, password: string) =>
+    dispatch(emailSignInStart({ email, password })),
 });
 
 export default connect(null, mapDispatchToProps)(SignIn);
