@@ -31,9 +31,7 @@ export function* fetchCollectionsStart() {
 }
 
 export function* fetchCollectionsAsync(): Generator<
-  Promise<QuerySnapshot<DocumentData>> | CallEffect<CollectionList> | PutEffect,
-  void,
-  unknown
+  Promise<QuerySnapshot<DocumentData>> | CallEffect<CollectionList> | PutEffect
 > {
   try {
     const collectionRef = collection(firestore, "collections");

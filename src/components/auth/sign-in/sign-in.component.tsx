@@ -1,14 +1,22 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
 
-import { auth, signInWithGoogle } from "src/db/firebase.utils";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "src/db/firebase.utils";
+
+import { connect } from "react-redux";
+import { googleSignInStart } from "src/redux/user/user.actions";
 
 import FormInput from "src/components/form/form-input/form-input.component";
 import CustomButton from "src/components/form/custom-button/custom-button.component";
 
 import * as Styled from "./sign-in.styles";
+import { Dispatch } from "redux";
 
-const SignIn = (): JSX.Element => {
+interface ISignInProps {
+  googleSignInStart: () => void;
+}
+
+const SignIn = ({ googleSignInStart }: ISignInProps): JSX.Element => {
   const [email, setEmail] = useState<string>(""),
     [password, setPassword] = useState<string>(""),
     changeFn = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -62,7 +70,7 @@ const SignIn = (): JSX.Element => {
 
         <Styled.Buttons>
           <CustomButton type="submit">Sign In</CustomButton>
-          <CustomButton type="button" googleSignIn onClick={signInWithGoogle}>
+          <CustomButton type="button" googleSignIn onClick={googleSignInStart}>
             Sign In with Google
           </CustomButton>
         </Styled.Buttons>
@@ -71,4 +79,8 @@ const SignIn = (): JSX.Element => {
   );
 };
 
-export default SignIn;
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  googleSignInStart: () => dispatch(googleSignInStart()),
+});
+
+export default connect(null, mapDispatchToProps)(SignIn);

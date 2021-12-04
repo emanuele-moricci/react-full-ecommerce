@@ -1,7 +1,5 @@
 import { useEffect } from "react";
 
-import { auth, createUserProfileDocument } from "src/db/firebase.utils";
-
 import { Action } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 import { connect } from "react-redux";
@@ -17,34 +15,10 @@ interface IAppProps {
   fetchCollectionsStart: () => void;
 }
 
-const App = ({ setUser, fetchCollectionsStart }: IAppProps): JSX.Element => {
+const App = ({ fetchCollectionsStart }: IAppProps): JSX.Element => {
   useEffect(() => {
-    let unsubFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      if (userAuth) {
-        const userSnap = await createUserProfileDocument(userAuth);
-        const user = userSnap?.data();
-
-        if (!user) {
-          setUser(null);
-        } else {
-          setUser({
-            id: userSnap ? userSnap.id : "",
-            displayName: user?.displayName,
-            createdAt: user?.createdAt,
-            email: user?.email,
-          });
-        }
-      } else {
-        setUser(null);
-      }
-    });
-
     fetchCollectionsStart();
-
-    return () => {
-      unsubFromAuth();
-    };
-  }, [setUser, fetchCollectionsStart]);
+  }, [fetchCollectionsStart]);
 
   return (
     <div>

@@ -3,14 +3,7 @@ import { FirebaseApp, FirebaseOptions, initializeApp } from "firebase/app";
 
 // Add SDKs for Firebase products that you want to use here
 // https://firebase.google.com/docs/web/setup#available-libraries
-import {
-  Auth,
-  UserCredential,
-  User,
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-} from "firebase/auth";
+import { Auth, User, getAuth, GoogleAuthProvider } from "firebase/auth";
 import {
   Firestore,
   getFirestore,
@@ -23,6 +16,7 @@ import {
   writeBatch,
   QuerySnapshot,
 } from "firebase/firestore";
+
 import { Collection, CollectionList } from "src/redux/shop/shop.types";
 
 // Your web app's Firebase configuration
@@ -40,16 +34,15 @@ const firebaseConfig: FirebaseOptions = {
 // Initialize Firebase
 const app: FirebaseApp = initializeApp(firebaseConfig);
 
-// Export Data
+// Export Firebase Data
 export const auth: Auth = getAuth(app);
 export const firestore: Firestore = getFirestore(app);
 
 // Google Sign-In
-const provider: GoogleAuthProvider = new GoogleAuthProvider();
-provider.setCustomParameters({ prompt: "select_account" });
-export const signInWithGoogle = (): Promise<UserCredential> =>
-  signInWithPopup(auth, provider);
+export const googleProvider: GoogleAuthProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({ prompt: "select_account" });
 
+// Get and Parse the Current User From the DB
 export const createUserProfileDocument = async (
   userAuth: User,
   overrideName?: string
@@ -77,6 +70,7 @@ export const createUserProfileDocument = async (
   return snapShot;
 };
 
+// Shop Collections related functions
 export const convertCollectionsSnapshotToMap = (
   collections: QuerySnapshot<DocumentData>
 ): CollectionList => {
