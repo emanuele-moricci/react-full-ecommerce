@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import * as Styled from "./with-spinner.styles";
+
+import Spinner from "src/components/layout/spinner/spinner.component";
 
 interface IWithSpinnerProps {
   isLoading: boolean;
@@ -9,13 +10,7 @@ const WithSpinner =
   (Component: FC) =>
   ({ isLoading, ...otherProps }: IWithSpinnerProps) => {
     console.log(isLoading);
-    return isLoading ? (
-      <Styled.SpinnerOverlay>
-        <Styled.SpinnerContainer />
-      </Styled.SpinnerOverlay>
-    ) : (
-      <Component {...otherProps} />
-    );
+    return isLoading ? <Spinner /> : <Component {...otherProps} />;
   };
 
 export default WithSpinner;
