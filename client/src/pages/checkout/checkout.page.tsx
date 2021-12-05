@@ -1,16 +1,29 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import { selectItems, selectCartTotal } from "src/redux/cart/cart.selectors";
+import { selectCheckoutPurchasing } from "src/redux/checkout/checkout.selectors";
 
 import CheckoutItem from "src/components/checkout/checkout-item/checkout-item.component";
 import StripeCheckoutButton from "src/components/checkout/stripe-button/stripe-button.component";
+import Spinner from "src/components/layout/spinner/spinner.component";
 
 import * as Styled from "./checkout.styles";
 
 const Checkout = (): JSX.Element => {
+  const navigate = useNavigate();
+
   const items = useSelector(selectItems);
   const total = useSelector(selectCartTotal);
+  const purchasing = useSelector(selectCheckoutPurchasing);
 
-  return (
+  useEffect(() => {
+    if (!items.length) navigate("/");
+  }, [items, navigate]);
+
+  return purchasing ? (
+    <Spinner />
+  ) : (
     <Styled.CheckoutPage>
       <Styled.CheckoutHeader>
         <Styled.HeaderBlock>

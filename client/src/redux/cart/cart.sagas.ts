@@ -47,6 +47,7 @@ export function* onCartChange() {
       CartActionTypes.ADD_ITEM,
       CartActionTypes.REMOVE_ITEM,
       CartActionTypes.DELETE_ITEM_FROM_CART,
+      CartActionTypes.UPDATE_CART_ON_DATABASE,
     ],
     updateCartOnDatabase
   );
@@ -76,6 +77,7 @@ function* updateCartOnDatabase(): Generator {
         currentUser.id
       )) as DocumentReference<DocumentData>;
       const cartItems = (yield select(selectItems)) as Item[];
+
       yield updateDoc(cartRef, { cartItems });
     } catch (error) {
       console.log(error);

@@ -25,7 +25,7 @@ export const clearCart = () => ({
 });
 
 export const updateCartOnDatabase = () => ({
-  type: CartActionTypes.UPDATE_CART_IN_DATABASE,
+  type: CartActionTypes.UPDATE_CART_ON_DATABASE,
 });
 
 export const setCartFromDatabase = (cartItems: Item[]) => ({
