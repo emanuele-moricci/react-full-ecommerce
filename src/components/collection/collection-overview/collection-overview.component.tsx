@@ -1,6 +1,4 @@
-import { connect } from "react-redux";
-import { RootState } from "src/redux/root.store";
-import { Collection } from "src/redux/shop/shop.types";
+import { useSelector } from "react-redux";
 import { selectCollection } from "src/redux/shop/shop.selectors";
 
 import CollectionItem from "src/components/collection/collection-item/collection-item.component";
@@ -9,12 +7,13 @@ import * as Styled from "./collection-overview.styles";
 
 export interface ICollectionOverviewProps {
   collectionId: string;
-  foundCollection?: Collection | null;
 }
 
 const CollectionOverview = ({
-  foundCollection,
+  collectionId,
 }: ICollectionOverviewProps): JSX.Element => {
+  const foundCollection = useSelector(selectCollection(collectionId));
+
   return (
     <Styled.CollectionOverview>
       <Styled.Title>{foundCollection?.title}</Styled.Title>
@@ -27,11 +26,4 @@ const CollectionOverview = ({
   );
 };
 
-const mapStateToProps = (
-  state: RootState,
-  { collectionId }: ICollectionOverviewProps
-) => ({
-  foundCollection: selectCollection(collectionId)(state),
-});
-
-export default connect(mapStateToProps)(CollectionOverview);
+export default CollectionOverview;

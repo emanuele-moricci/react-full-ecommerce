@@ -1,5 +1,4 @@
-import { Dispatch } from "redux";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { CartItem } from "src/redux/cart/cart.types";
 import {
   addItem,
@@ -11,17 +10,11 @@ import * as Styled from "./checkout-item.styles";
 
 interface ICheckoutItemProps {
   item: CartItem;
-  addItem: (item: CartItem) => void;
-  removeItem: (item: CartItem) => void;
-  deleteItemFromCart: (item: CartItem) => void;
 }
 
-const CheckoutItem = ({
-  item,
-  addItem,
-  removeItem,
-  deleteItemFromCart,
-}: ICheckoutItemProps) => {
+const CheckoutItem = ({ item }: ICheckoutItemProps) => {
+  const dispatch = useDispatch();
+
   return (
     <Styled.CheckoutItem>
       <Styled.ImageContainer>
@@ -29,22 +22,20 @@ const CheckoutItem = ({
       </Styled.ImageContainer>
       <Styled.Name>{item.name}</Styled.Name>
       <Styled.Quantity>
-        <Styled.Arrow onClick={() => removeItem(item)}>&#10094;</Styled.Arrow>
+        <Styled.Arrow onClick={() => dispatch(removeItem(item))}>
+          &#10094;
+        </Styled.Arrow>
         <Styled.Value>{item.quantity}</Styled.Value>
-        <Styled.Arrow onClick={() => addItem(item)}>&#10095;</Styled.Arrow>
+        <Styled.Arrow onClick={() => dispatch(addItem(item))}>
+          &#10095;
+        </Styled.Arrow>
       </Styled.Quantity>
       <Styled.Price>{item.price}</Styled.Price>
-      <Styled.RemoveButton onClick={() => deleteItemFromCart(item)}>
+      <Styled.RemoveButton onClick={() => dispatch(deleteItemFromCart(item))}>
         &#10005;
       </Styled.RemoveButton>
     </Styled.CheckoutItem>
   );
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  addItem: (item: CartItem) => dispatch(addItem(item)),
-  removeItem: (item: CartItem) => dispatch(removeItem(item)),
-  deleteItemFromCart: (item: CartItem) => dispatch(deleteItemFromCart(item)),
-});
-
-export default connect(null, mapDispatchToProps)(CheckoutItem);
+export default CheckoutItem;

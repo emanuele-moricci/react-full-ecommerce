@@ -1,7 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 
-import { Dispatch } from "redux";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { signUpStart } from "src/redux/user/user.actions";
 
 import FormInput from "src/components/form/form-input/form-input.component";
@@ -9,11 +8,9 @@ import CustomButton from "src/components/form/custom-button/custom-button.compon
 
 import * as Styled from "./sign-up.styles";
 
-interface ISignUpProps {
-  signUpStart: (name: string, email: string, password: string) => void;
-}
+const SignUp = (): JSX.Element => {
+  const dispatch = useDispatch();
 
-const SignUp = ({ signUpStart }: ISignUpProps): JSX.Element => {
   const [name, setName] = useState<string>(""),
     [email, setEmail] = useState<string>(""),
     [password, setPassword] = useState<string>(""),
@@ -46,7 +43,7 @@ const SignUp = ({ signUpStart }: ISignUpProps): JSX.Element => {
         return;
       }
 
-      signUpStart(name, email, password);
+      dispatch(signUpStart({ name, email, password }));
     };
 
   return (
@@ -88,9 +85,4 @@ const SignUp = ({ signUpStart }: ISignUpProps): JSX.Element => {
   );
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  signUpStart: (name: string, email: string, password: string) =>
-    dispatch(signUpStart({ name, email, password })),
-});
-
-export default connect(null, mapDispatchToProps)(SignUp);
+export default SignUp;
