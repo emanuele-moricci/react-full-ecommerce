@@ -9,6 +9,8 @@ import { Provider } from "react-redux";
 import appStore from "src/redux/root.store";
 import App from "src/pages/App";
 
+import * as serviceWorker from "src/pwa/serviceWorkerRegistration";
+
 import GlobalStyles from "./assets/global.styles";
 
 ReactDOM.render(
@@ -24,3 +26,6 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
+
+// PWA settings
+serviceWorker.register();
