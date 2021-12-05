@@ -21,6 +21,9 @@ import {
   collection,
   writeBatch,
   QuerySnapshot,
+  where,
+  query,
+  getDocs,
 } from "firebase/firestore";
 
 import { Collection, CollectionList } from "src/redux/shop/shop.types";
@@ -127,4 +130,18 @@ export const getCurrentUser = (): Promise<User | null> => {
       reject
     );
   });
+};
+
+export const getUserCartRef = async (userId: string) => {
+  const cartsRef = collection(firestore, "carts");
+  const cartQuery = query(cartsRef, where("userId", "==", userId));
+  const snapShot = await getDocs(cartQuery);
+
+  if (snapShot.empty) {
+    const cartDocRef = doc(cartsRef);
+    await setDoc(cartDocRef, { userId, cartItems: [] });
+    return cartDocRef;
+  } else {
+    return snapShot.docs[0].ref;
+  }
 };

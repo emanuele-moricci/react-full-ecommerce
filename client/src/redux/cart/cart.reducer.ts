@@ -38,6 +38,11 @@ const cartReducer = (state = INITIAL_STATE, { type, payload }: AnyAction) => {
         ...state,
         items: [],
       };
+    case CartActionTypes.SET_CART_FROM_DATABASE:
+      return {
+        ...state,
+        items: payload,
+      };
     default:
       return state;
   }
