@@ -1,9 +1,17 @@
 import styled from "styled-components";
 
 export const SignUp = styled.div`
+  width: 380px;
   display: flex;
   flex-direction: column;
-  width: 380px;
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+
+    button {
+      width: 100%;
+    }
+  }
 `;
 
 export const Title = styled.h2`

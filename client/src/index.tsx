@@ -9,13 +9,14 @@ import { Provider } from "react-redux";
 import appStore from "src/redux/root.store";
 import App from "src/pages/App";
 
-import "./index.css";
+import GlobalStyles from "./assets/global.styles";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={appStore.store}>
       <BrowserRouter>
         <PersistGate persistor={appStore.persistor}>
+          <GlobalStyles />
           <App />
         </PersistGate>
       </BrowserRouter>

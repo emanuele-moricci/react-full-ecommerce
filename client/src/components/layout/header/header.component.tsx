@@ -23,7 +23,7 @@ const Header = (): JSX.Element => {
         <Styled.OptionLink to="/shop">SHOP</Styled.OptionLink>
         <Styled.OptionLink to="/shop">CONTACT</Styled.OptionLink>
         {user ? (
-          <Styled.OptionLink as="div" onClick={() => dispatch(signOutStart)}>
+          <Styled.OptionLink as="div" onClick={() => dispatch(signOutStart())}>
             SIGN OUT
           </Styled.OptionLink>
         ) : (
