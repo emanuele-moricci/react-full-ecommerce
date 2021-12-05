@@ -8,9 +8,7 @@ interface IWithSpinnerProps {
 
 const WithSpinner =
   (Component: FC) =>
-  ({ isLoading, ...otherProps }: IWithSpinnerProps) => {
-    console.log(isLoading);
-    return isLoading ? <Spinner /> : <Component {...otherProps} />;
-  };
+  ({ isLoading, ...otherProps }: IWithSpinnerProps) =>
+    isLoading ? <Spinner /> : <Component {...otherProps} />;
 
 export default WithSpinner;

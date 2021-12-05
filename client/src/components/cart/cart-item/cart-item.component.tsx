@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { CartItem as CartItemType } from "src/redux/cart/cart.types";
 
 import * as Styled from "./cart-item.styles";
@@ -20,4 +21,4 @@ const CartItem = ({
   </Styled.CartItem>
 );
 
-export default CartItem;
+export default memo(CartItem);
