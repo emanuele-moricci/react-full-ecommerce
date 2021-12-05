@@ -9,7 +9,7 @@ const CartIcon = () => {
   const itemCount = useSelector(selectItemsCount);
 
   return (
-    <Styled.CartIcons onClick={() => dispatch(toggleCartDropdown)}>
+    <Styled.CartIcons onClick={() => dispatch(toggleCartDropdown())}>
       <Styled.ShoppingIcon />
       <Styled.ItemCount> {itemCount}</Styled.ItemCount>
     </Styled.CartIcons>
