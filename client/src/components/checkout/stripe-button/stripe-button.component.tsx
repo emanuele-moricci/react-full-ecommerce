@@ -7,7 +7,8 @@ interface IStripeCheckoutButtonProps {
 
 const StripeCheckoutButton = ({ price }: IStripeCheckoutButtonProps) => {
   const priceForStripe = price * 100;
-  const publishableKey = process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY ?? "";
+  const publishableKey =
+    "pk_test_51K1WOJIU1uoEyCuhqlPZE3Fc12QzMQ9qi3xa20bgsTmiCdL0NZcejHOqIazDVBqs7jCztbG5ClEcQXzR3FvV7ymm00DY9jaevJ";
 
   const onToken = (token: Token) => {
     axios({
