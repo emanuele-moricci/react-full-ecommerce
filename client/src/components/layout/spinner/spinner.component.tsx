@@ -1,6 +1,6 @@
 import * as Styled from "./spinner.styles";
 
-const Spinner = () => (
+const Spinner = (): JSX.Element => (
   <Styled.SpinnerOverlay>
     <Styled.SpinnerContainer />
   </Styled.SpinnerOverlay>
