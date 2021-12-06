@@ -18,11 +18,8 @@ import {
   PutEffect,
 } from "redux-saga/effects";
 
-import { CollectionList, ShopActionTypes } from "./shop.types";
-import {
-  fetchCollectionsFailure,
-  fetchCollectionsSuccess,
-} from "./shop.actions";
+import { CollectionList } from "./shop.types";
+import { shopActions } from "./shop.slice";
 
 /* ∨∨∨∨ START FUNCTIONS ∨∨∨∨ */
 
@@ -32,7 +29,7 @@ export function* shopSagas() {
 
 export function* onFetchCollectionsStart() {
   yield takeLatest(
-    ShopActionTypes.FETCH_COLLECTIONS_START,
+    shopActions.fetchCollectionsStart.type,
     fetchCollectionsAsync
   );
 }
@@ -53,10 +50,10 @@ export function* fetchCollectionsAsync(): Generator<
       snapshot
     )) as CollectionList;
 
-    yield put(fetchCollectionsSuccess(collectionsMap));
+    yield put(shopActions.fetchCollectionsSuccess(collectionsMap));
   } catch (error) {
     const msg = error instanceof Error ? error.message : "";
 
-    yield put(fetchCollectionsFailure(msg));
+    yield put(shopActions.fetchCollectionsFailure(msg));
   }
 }

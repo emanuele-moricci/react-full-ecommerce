@@ -2,10 +2,6 @@
   "name": "react-full-ecommerce-server",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": "14.17.1",
-    "npm": "6.14.13"
-  },
   "scripts": {
     "client": "cd client && yarn start",
     "server": "nodemon server.js",

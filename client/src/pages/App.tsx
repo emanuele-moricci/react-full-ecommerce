@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import { useDispatch } from "react-redux";
 import { userActions } from "src/redux/user/user.slice";
-import { fetchCollectionsStart } from "src/redux/shop/shop.actions";
+import { shopActions } from "src/redux/shop/shop.slice";
 
 import Header from "src/components/layout/header/header.component";
 import Routes from "src/pages/routes";
@@ -13,7 +13,7 @@ const App = (): JSX.Element => {
   useEffect(() => {
     dispatch(userActions.checkUserSession());
 
-    dispatch(fetchCollectionsStart());
+    dispatch(shopActions.fetchCollectionsStart());
   }, [dispatch]);
 
   return (
