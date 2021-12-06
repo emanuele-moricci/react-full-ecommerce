@@ -1,11 +1,11 @@
-import CollectionsOverviewContainer from "src/components/collection/collections-overview/collections-overview.container";
+import ShopOverviewContainer from "src/components/shop/shop-overview.container";
 
 import * as Styled from "./shop.styles";
 
 const Shop = (): JSX.Element => {
   return (
     <Styled.ShopPage>
-      <CollectionsOverviewContainer />
+      <ShopOverviewContainer />
     </Styled.ShopPage>
   );
 };

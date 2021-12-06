@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CollectionPreview = styled.div`
+export const ShopItem = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 30px;
@@ -15,7 +15,7 @@ export const Title = styled.h1`
   margin-bottom: 25px;
 `;
 
-export const Preview = styled.div`
+export const Item = styled.div`
   display: flex;
   justify-content: space-between;
 

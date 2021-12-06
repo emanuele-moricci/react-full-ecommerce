@@ -7,7 +7,7 @@ const largeItemStyles = css`
 const getSizeStyle = ({ size }: { size?: string }) =>
   size === "large" ? largeItemStyles : {};
 
-export const MenuItemContainer = styled.div`
+export const DirectoryItemContainer = styled.div`
   min-width: 30%;
   height: 240px;
   flex: 1 1 auto;

@@ -2,24 +2,21 @@ import { Collection } from "src/redux/shop/shop.types";
 
 import CollectionItem from "src/components/collection/collection-item/collection-item.component";
 
-import * as Styled from "./collection-preview.styles";
+import * as Styled from "./shop-item.styles";
 
-interface ICollectionPreviewProps extends Collection {}
+interface IShopItemProps extends Collection {}
 
-const CollectionPreview = ({
-  title,
-  items,
-}: ICollectionPreviewProps): JSX.Element => (
-  <Styled.CollectionPreview>
+const ShopItem = ({ title, items }: IShopItemProps): JSX.Element => (
+  <Styled.ShopItem>
     <Styled.Title>{title.toUpperCase()}</Styled.Title>
-    <Styled.Preview>
+    <Styled.Item>
       {items
         .filter((_, i) => i < 4)
         .map((item) => (
           <CollectionItem key={item.id} item={item} />
         ))}
-    </Styled.Preview>
-  </Styled.CollectionPreview>
+    </Styled.Item>
+  </Styled.ShopItem>
 );
 
-export default CollectionPreview;
+export default ShopItem;

@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 
-import CollectionOverviewContainer from "src/components/collection/collection-overview/collection-overview.container";
+import CollectionOverviewContainer from "src/components/collection/collection-overview.container";
 
 import * as Styled from "./collection.styles";
 

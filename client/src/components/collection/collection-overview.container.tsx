@@ -4,7 +4,9 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectIsFetching } from "src/redux/shop/shop.selectors";
 
-import CollectionsOverview from "./collections-overview.component";
+import CollectionOverview, {
+  ICollectionOverviewProps,
+} from "./collection-overview.component";
 
 import withSpinner from "src/components/HOC/with-spinner/with-spinner.component";
 
@@ -12,9 +14,9 @@ const mapStateToProps = createStructuredSelector({
   isLoading: selectIsFetching,
 });
 
-const CollectionsOverviewContainer = compose(
+const CollectionOverviewContainer = compose(
   connect(mapStateToProps),
   withSpinner
-)(CollectionsOverview);
+)(CollectionOverview);
 
-export default CollectionsOverviewContainer as FC;
+export default CollectionOverviewContainer as FC<ICollectionOverviewProps>;

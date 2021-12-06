@@ -2,21 +2,21 @@ import { NavigateFunction, useNavigate } from "react-router-dom";
 
 import { Section } from "src/redux/directory/directory.types";
 
-import * as Styled from "./menu-item.styles";
+import * as Styled from "./directory-item.styles";
 
-interface IMenuItemProps extends Section {}
+interface IDirectoryItemProps extends Section {}
 
-const MenuItem = ({
+const DirectoryItem = ({
   title,
   imageUrl,
   size,
   linkUrl,
-}: IMenuItemProps): JSX.Element => {
+}: IDirectoryItemProps): JSX.Element => {
   const navigate: NavigateFunction = useNavigate(),
     navigateFn = (): void => navigate(`${linkUrl}`);
 
   return (
-    <Styled.MenuItemContainer size={size} onClick={navigateFn}>
+    <Styled.DirectoryItemContainer size={size} onClick={navigateFn}>
       <Styled.BackgroundImage
         className="background-image"
         imageUrl={imageUrl}
@@ -29,8 +29,8 @@ const MenuItem = ({
           SHOP NOW
         </Styled.ContentSubtitle>
       </Styled.ContentContainer>
-    </Styled.MenuItemContainer>
+    </Styled.DirectoryItemContainer>
   );
 };
 
-export default MenuItem;
+export default DirectoryItem;

@@ -21,7 +21,6 @@ const Header = (): JSX.Element => {
       </Styled.LogoContainer>
       <Styled.OptionsContainer>
         <Styled.OptionLink to="/shop">SHOP</Styled.OptionLink>
-        <Styled.OptionLink to="/shop">CONTACT</Styled.OptionLink>
         {user ? (
           <Styled.OptionLink
             as="div"
