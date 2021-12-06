@@ -24,8 +24,10 @@ const ProjectRoutes = () => {
       <Suspense fallback={<Spinner />}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/shop/:collection" element={<Collection />} />
+          <Route path="/shop">
+            <Route path=":collection" element={<Collection />} />
+            <Route index element={<Shop />} />
+          </Route>
           <Route path="/auth" element={user ? <Navigate to="/" /> : <Auth />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="*" element={<Error statusCode={404} />} />
