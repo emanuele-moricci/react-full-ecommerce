@@ -1,7 +1,12 @@
 {
   "name": "react-full-ecommerce-server",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "author": "Emanuele Moricci",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emanuele-moricci/react-full-ecommerce"
+  },
   "scripts": {
     "client": "cd client && yarn start",
     "server": "nodemon server.js",
