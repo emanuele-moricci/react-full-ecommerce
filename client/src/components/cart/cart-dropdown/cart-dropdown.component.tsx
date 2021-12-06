@@ -2,7 +2,7 @@ import { NavigateFunction, useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectItems } from "src/redux/cart/cart.selectors";
-import { toggleCartDropdown } from "src/redux/cart/cart.actions";
+import { cartActions } from "src/redux/cart/cart.slice";
 
 import CartItem from "src/components/cart/cart-item/cart-item.component";
 import CustomButton from "src/components/form/custom-button/custom-button.component";
@@ -28,7 +28,7 @@ const CartDropdown = () => {
       <CustomButton
         onClick={() => {
           navigateFn();
-          dispatch(toggleCartDropdown());
+          dispatch(cartActions.toggleCartDropdown());
         }}
       >
         GO TO CHECKOUT

@@ -8,9 +8,8 @@ import {
 } from "redux-saga/effects";
 
 import { User } from "../user/user.types";
-import { CartActionTypes } from "./cart.types";
+import { cartActions } from "./cart.slice";
 import { userActions } from "../user/user.slice";
-import { clearCart, setCartFromDatabase } from "./cart.actions";
 import { getUserCartRef } from "src/db/firebase.utils";
 import {
   DocumentData,
@@ -45,10 +44,10 @@ export function* onSignOutSuccess() {
 export function* onCartChange() {
   yield takeLatest(
     [
-      CartActionTypes.ADD_ITEM,
-      CartActionTypes.REMOVE_ITEM,
-      CartActionTypes.DELETE_ITEM_FROM_CART,
-      CartActionTypes.UPDATE_CART_ON_DATABASE,
+      cartActions.addItem.type,
+      cartActions.removeItem.type,
+      cartActions.deleteItemFromCart.type,
+      cartActions.updateCartOnDatabase.type,
     ],
     updateCartOnDatabase
   );
@@ -57,7 +56,7 @@ export function* onCartChange() {
 /* ^^^^ START FUNCTIONS ^^^^ */
 
 function* clearCartOnSignOut(): Generator<PutEffect> {
-  yield put(clearCart());
+  yield put(cartActions.clearCart());
 }
 
 export function* checkCartFromDatabase({ payload }: AnyAction): Generator {
@@ -67,7 +66,7 @@ export function* checkCartFromDatabase({ payload }: AnyAction): Generator {
   const cartSnapshot = (yield getDoc(
     cartRef
   )) as DocumentSnapshot<DocumentData>;
-  yield put(setCartFromDatabase(cartSnapshot.data()?.cartItems));
+  yield put(cartActions.setCartFromDatabase(cartSnapshot.data()?.cartItems));
 }
 
 function* updateCartOnDatabase(): Generator {

@@ -4,7 +4,7 @@ import { all, call, takeLatest, put, PutEffect } from "redux-saga/effects";
 
 import { checkoutActions } from "./checkout.slice";
 import { getErrorMessage } from "src/utils/functions";
-import { clearCart, updateCartOnDatabase } from "../cart/cart.actions";
+import { cartActions } from "../cart/cart.slice";
 
 /* ∨∨∨∨ START FUNCTIONS ∨∨∨∨ */
 
@@ -29,8 +29,8 @@ function* checkout({
     });
 
     yield put(checkoutActions.checkoutSuccess());
-    yield put(clearCart());
-    yield put(updateCartOnDatabase());
+    yield put(cartActions.clearCart());
+    yield put(cartActions.updateCartOnDatabase());
   } catch (error) {
     yield put(checkoutActions.checkoutFailure(getErrorMessage(error)));
   }
