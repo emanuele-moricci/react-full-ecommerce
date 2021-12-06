@@ -6,7 +6,7 @@ import userReducer from "src/redux/user/user.slice";
 import cartReducer from "src/redux/cart/cart.reducer";
 import directoryReducer from "src/redux/directory/directory.slice";
 import shopReducer from "src/redux/shop/shop.slice";
-import checkoutReducer from "src/redux/checkout/checkout.reducer";
+import checkoutReducer from "src/redux/checkout/checkout.slice";
 
 const persistConfig = {
   key: "root",
