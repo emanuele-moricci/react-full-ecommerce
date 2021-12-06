@@ -7,7 +7,7 @@ type InitialStateType = {
   errorMessage: string | null;
 };
 
-const initialState: InitialStateType = {
+export const initialState: InitialStateType = {
   collections: null,
   isFetching: false,
   errorMessage: null,

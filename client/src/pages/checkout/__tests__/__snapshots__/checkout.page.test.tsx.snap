@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Checkout /> Should match the snapshot 1`] = `
+<div
+  className="sc-jrQzAO coUdoP"
+>
+  <div
+    className="sc-kDTinF jFesrt"
+  >
+    <div
+      className="sc-iqseJM dfxpsH"
+    >
+      <span>
+        Product
+      </span>
+    </div>
+    <div
+      className="sc-iqseJM dfxpsH"
+    >
+      <span>
+        Description
+      </span>
+    </div>
+    <div
+      className="sc-iqseJM dfxpsH"
+    >
+      <span>
+        Quantity
+      </span>
+    </div>
+    <div
+      className="sc-iqseJM dfxpsH"
+    >
+      <span>
+        Price
+      </span>
+    </div>
+    <div
+      className="sc-iqseJM dfxpsH"
+    >
+      <span>
+        Remove
+      </span>
+    </div>
+  </div>
+  <div
+    className="sc-crHmcD dzxRkv"
+  >
+    <span>
+      TOTAL: $
+      0
+    </span>
+  </div>
+  <div
+    className="sc-egiyK eyBjwp"
+  >
+    *Please use the following test credit card for payments*
+    <br />
+    4242 4242 4242 4242 - Exp: 01/29 - CVV: 123
+  </div>
+  <button
+    className="StripeCheckout"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onMouseDown={[Function]}
+    onMouseOut={[Function]}
+    onMouseUp={[Function]}
+    style={
+      Object {
+        "background": "linear-gradient(#28a0e5,#015e94)",
+        "border": 0,
+        "borderRadius": 5,
+        "boxShadow": "0 1px 0 rgba(0,0,0,0.2)",
+        "cursor": "pointer",
+        "display": "inline-block",
+        "overflow": "hidden",
+        "padding": 1,
+        "textDecoration": "none",
+        "userSelect": "none",
+        "visibility": "visible",
+      }
+    }
+  >
+    <span
+      style={
+        Object {
+          "backgroundImage": "linear-gradient(#7dc5ee,#008cdd 85%,#30a2e4)",
+          "borderRadius": 4,
+          "boxShadow": "inset 0 1px 0 rgba(255,255,255,0.25)",
+          "color": "#fff",
+          "display": "block",
+          "fontFamily": "\\"Helvetica Neue\\",Helvetica,Arial,sans-serif",
+          "fontSize": 14,
+          "fontWeight": "bold",
+          "height": 30,
+          "lineHeight": "30px",
+          "padding": "0 12px",
+          "position": "relative",
+          "textShadow": "0 -1px 0 rgba(0,0,0,0.25)",
+        }
+      }
+    >
+      Pay Now
+    </span>
+  </button>
+</div>
+`;

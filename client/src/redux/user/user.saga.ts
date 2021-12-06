@@ -13,7 +13,6 @@ import {
 } from "firebase/auth";
 import { DocumentData, DocumentSnapshot } from "firebase/firestore";
 
-import { AnyAction } from "redux";
 import {
   all,
   call,
@@ -25,6 +24,8 @@ import { CallEffect } from "redux-saga/effects";
 import { userActions } from "./user.slice";
 
 import { getErrorMessage } from "src/utils/functions";
+import { PayloadAction } from "@reduxjs/toolkit";
+import { UserLogin, UserRegister } from "./user.types";
 
 /* ∨∨∨∨ START FUNCTIONS ∨∨∨∨ */
 
@@ -91,7 +92,9 @@ function* signOut(): Generator<Promise<void> | PutEffect> {
 
 function* signUp({
   payload: { name, email, password },
-}: AnyAction): Generator<Promise<UserCredential> | Generator | PutEffect> {
+}: PayloadAction<UserRegister>): Generator<
+  Promise<UserCredential> | Generator | PutEffect
+> {
   try {
     const { user } = (yield createUserWithEmailAndPassword(
       auth,
@@ -151,7 +154,7 @@ function* signInWithGoogle(): Generator {
 
 function* signInWithEmail({
   payload: { email, password },
-}: AnyAction): Generator {
+}: PayloadAction<UserLogin>): Generator {
   try {
     const { user } = (yield signInWithEmailAndPassword(
       auth,

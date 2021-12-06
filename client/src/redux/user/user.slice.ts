@@ -6,7 +6,7 @@ type InitialStateType = {
   errorMessage: string | null;
 };
 
-const initialState: InitialStateType = {
+export const initialState: InitialStateType = {
   user: null,
   errorMessage: null,
 };

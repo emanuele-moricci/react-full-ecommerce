@@ -1,10 +1,11 @@
-import axios, { AxiosPromise } from "axios";
-import { AnyAction } from "redux";
 import { all, call, takeLatest, put, PutEffect } from "redux-saga/effects";
+import { PayloadAction } from "@reduxjs/toolkit";
+import axios, { AxiosPromise } from "axios";
 
 import { checkoutActions } from "./checkout.slice";
 import { cartActions } from "src/redux/cart/cart.slice";
 import { getErrorMessage } from "src/utils/functions";
+import { CheckoutData } from "./checkout.types";
 
 /* ∨∨∨∨ START FUNCTIONS ∨∨∨∨ */
 
@@ -20,7 +21,7 @@ export function* onCheckoutStart() {
 
 function* checkout({
   payload,
-}: AnyAction): Generator<AxiosPromise | PutEffect> {
+}: PayloadAction<CheckoutData>): Generator<AxiosPromise | PutEffect> {
   try {
     yield axios({
       url: "payment",

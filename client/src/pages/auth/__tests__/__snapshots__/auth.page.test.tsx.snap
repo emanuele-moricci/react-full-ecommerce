@@ -1,0 +1,163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Auth /> Should match the snapshot 1`] = `
+<div
+  className="sc-kDTinF erjZyr"
+>
+  <div
+    className="sc-eCImPb jnotZz"
+  >
+    <h2
+      className="sc-jRQBWg hRSpAi"
+    >
+      I already have an account
+    </h2>
+    <span>
+      Sign in with your email and password
+    </span>
+    <form
+      className="sc-iCfMLu"
+      onSubmit={[Function]}
+    >
+      <div
+        className="sc-bdvvtL hKCIAl"
+      >
+        <input
+          className="sc-gsDKAQ jbRPqg"
+          name="email"
+          onChange={[Function]}
+          required={true}
+          type="email"
+          value=""
+        />
+        <label
+          className="sc-dkPtRN hdMbdV"
+        >
+          Email
+        </label>
+      </div>
+      <div
+        className="sc-bdvvtL hKCIAl"
+      >
+        <input
+          className="sc-gsDKAQ jbRPqg"
+          name="password"
+          onChange={[Function]}
+          required={true}
+          type="password"
+          value=""
+        />
+        <label
+          className="sc-dkPtRN hdMbdV"
+        >
+          Password
+        </label>
+      </div>
+      <div
+        className="sc-gKclnd jJEzqN"
+      >
+        <button
+          className="sc-hKwDye loXgGx"
+          type="submit"
+        >
+          Sign In
+        </button>
+        <button
+          className="sc-hKwDye hHVCIZ"
+          onClick={[Function]}
+          type="button"
+        >
+          Sign In with Google
+        </button>
+      </div>
+    </form>
+  </div>
+  <div
+    className="sc-furwcr jlOgjx"
+  >
+    <h2
+      className="sc-pVTFL ikVURh"
+    >
+      I do not have an account
+    </h2>
+    <span>
+      Sign up with your email and password
+    </span>
+    <form
+      className="sc-jrQzAO"
+      onSubmit={[Function]}
+    >
+      <div
+        className="sc-bdvvtL hKCIAl"
+      >
+        <input
+          className="sc-gsDKAQ jbRPqg"
+          name="name"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+        <label
+          className="sc-dkPtRN hdMbdV"
+        >
+          Name
+        </label>
+      </div>
+      <div
+        className="sc-bdvvtL hKCIAl"
+      >
+        <input
+          className="sc-gsDKAQ jbRPqg"
+          name="email"
+          onChange={[Function]}
+          type="email"
+          value=""
+        />
+        <label
+          className="sc-dkPtRN hdMbdV"
+        >
+          Email
+        </label>
+      </div>
+      <div
+        className="sc-bdvvtL hKCIAl"
+      >
+        <input
+          className="sc-gsDKAQ jbRPqg"
+          name="password"
+          onChange={[Function]}
+          type="password"
+          value=""
+        />
+        <label
+          className="sc-dkPtRN hdMbdV"
+        >
+          Password
+        </label>
+      </div>
+      <div
+        className="sc-bdvvtL hKCIAl"
+      >
+        <input
+          className="sc-gsDKAQ jbRPqg"
+          name="confPwd"
+          onChange={[Function]}
+          type="password"
+          value=""
+        />
+        <label
+          className="sc-dkPtRN hdMbdV"
+        >
+          Confirm Password
+        </label>
+      </div>
+      <button
+        className="sc-hKwDye loXgGx"
+        type="submit"
+      >
+        SIGN UP
+      </button>
+    </form>
+  </div>
+</div>
+`;

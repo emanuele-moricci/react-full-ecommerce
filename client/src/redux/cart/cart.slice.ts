@@ -8,7 +8,7 @@ type InitialStateType = {
   items: CartItem[];
 };
 
-const initialState: InitialStateType = {
+export const initialState: InitialStateType = {
   hidden: true,
   items: [],
 };

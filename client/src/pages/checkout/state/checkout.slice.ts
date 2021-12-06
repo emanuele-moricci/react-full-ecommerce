@@ -6,7 +6,7 @@ type InitialStateType = {
   errorMessage: null | string;
 };
 
-const initialState: InitialStateType = {
+export const initialState: InitialStateType = {
   purchasing: false,
   errorMessage: null,
 };

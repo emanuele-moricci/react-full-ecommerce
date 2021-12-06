@@ -1,4 +1,4 @@
-import { AnyAction } from "redux";
+import { PayloadAction } from "@reduxjs/toolkit";
 import {
   all,
   call,
@@ -60,10 +60,10 @@ function* clearCartOnSignOut(): Generator<PutEffect> {
   yield put(cartActions.clearCart());
 }
 
-export function* checkCartFromDatabase({ payload }: AnyAction): Generator {
-  const cartRef = (yield getUserCartRef(
-    payload.id
-  )) as DocumentReference<DocumentData>;
+export function* checkCartFromDatabase({
+  payload: { id },
+}: PayloadAction<{ id: string }>): Generator {
+  const cartRef = (yield getUserCartRef(id)) as DocumentReference<DocumentData>;
   const cartSnapshot = (yield getDoc(
     cartRef
   )) as DocumentSnapshot<DocumentData>;

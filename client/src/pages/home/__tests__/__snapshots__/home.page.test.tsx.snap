@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Home /> Should match the snapshot 1`] = `
+<div
+  className="sc-gKclnd fHrYJH"
+>
+  <div
+    className="sc-jRQBWg jecsyG"
+  >
+    <div
+      className="sc-bdvvtL cUwxXM"
+      onClick={[Function]}
+    >
+      <div
+        className="sc-gsDKAQ kjUoh background-image"
+      />
+      <div
+        className="sc-dkPtRN iPlZZe content"
+      >
+        <span
+          className="sc-hKwDye kMQOTw title"
+        >
+          HATS
+        </span>
+        <span
+          className="sc-eCImPb joXWrW subtitle"
+        >
+          SHOP NOW
+        </span>
+      </div>
+    </div>
+    <div
+      className="sc-bdvvtL cUwxXM"
+      onClick={[Function]}
+    >
+      <div
+        className="sc-gsDKAQ gDMcnR background-image"
+      />
+      <div
+        className="sc-dkPtRN iPlZZe content"
+      >
+        <span
+          className="sc-hKwDye kMQOTw title"
+        >
+          JACKETS
+        </span>
+        <span
+          className="sc-eCImPb joXWrW subtitle"
+        >
+          SHOP NOW
+        </span>
+      </div>
+    </div>
+    <div
+      className="sc-bdvvtL cUwxXM"
+      onClick={[Function]}
+    >
+      <div
+        className="sc-gsDKAQ dmMrFS background-image"
+      />
+      <div
+        className="sc-dkPtRN iPlZZe content"
+      >
+        <span
+          className="sc-hKwDye kMQOTw title"
+        >
+          SNEAKERS
+        </span>
+        <span
+          className="sc-eCImPb joXWrW subtitle"
+        >
+          SHOP NOW
+        </span>
+      </div>
+    </div>
+    <div
+      className="sc-bdvvtL dSnQlR"
+      onClick={[Function]}
+      size="large"
+    >
+      <div
+        className="sc-gsDKAQ gASBNm background-image"
+      />
+      <div
+        className="sc-dkPtRN iPlZZe content"
+      >
+        <span
+          className="sc-hKwDye kMQOTw title"
+        >
+          WOMENS
+        </span>
+        <span
+          className="sc-eCImPb joXWrW subtitle"
+        >
+          SHOP NOW
+        </span>
+      </div>
+    </div>
+    <div
+      className="sc-bdvvtL dSnQlR"
+      onClick={[Function]}
+      size="large"
+    >
+      <div
+        className="sc-gsDKAQ ibfNaN background-image"
+      />
+      <div
+        className="sc-dkPtRN iPlZZe content"
+      >
+        <span
+          className="sc-hKwDye kMQOTw title"
+        >
+          MENS
+        </span>
+        <span
+          className="sc-eCImPb joXWrW subtitle"
+        >
+          SHOP NOW
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
