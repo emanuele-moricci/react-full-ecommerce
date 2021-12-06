@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 
 import { useDispatch } from "react-redux";
-import { signUpStart } from "src/redux/user/user.actions";
+import { userActions } from "src/redux/user/user.slice";
 
 import FormInput from "src/components/form/form-input/form-input.component";
 import CustomButton from "src/components/form/custom-button/custom-button.component";
@@ -43,7 +43,7 @@ const SignUp = (): JSX.Element => {
         return;
       }
 
-      dispatch(signUpStart({ name, email, password }));
+      dispatch(userActions.SignUpStart({ name, email, password }));
     };
 
   return (

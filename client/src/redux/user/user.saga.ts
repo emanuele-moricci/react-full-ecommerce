@@ -22,14 +22,7 @@ import {
   PutEffect,
 } from "@redux-saga/core/effects";
 import { CallEffect } from "redux-saga/effects";
-import { UserActionTypes } from "./user.types";
-import {
-  signInSuccess,
-  signInFailure,
-  signOutSuccess,
-  signOutFailure,
-  signUpSuccess,
-} from "./user.actions";
+import { userActions } from "./user.slice";
 
 import { getErrorMessage } from "src/utils/functions";
 
@@ -46,23 +39,23 @@ export function* userSagas() {
 }
 
 export function* onCheckUserSession() {
-  yield takeLatest(UserActionTypes.CHECK_USER_SESSION, checkUserSession);
+  yield takeLatest(userActions.checkUserSession.type, checkUserSession);
 }
 
 export function* onSignUpStart() {
-  yield takeLatest(UserActionTypes.SIGN_UP_START, signUp);
+  yield takeLatest(userActions.SignUpStart.type, signUp);
 }
 
 export function* onSignOutStart() {
-  yield takeLatest(UserActionTypes.SIGN_OUT_START, signOut);
+  yield takeLatest(userActions.SignOutStart.type, signOut);
 }
 
 export function* onGoogleSignInStart() {
-  yield takeLatest(UserActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle);
+  yield takeLatest(userActions.googleSignInStart.type, signInWithGoogle);
 }
 
 export function* onEmailSignInStart() {
-  yield takeLatest(UserActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
+  yield takeLatest(userActions.EmailSignInStart.type, signInWithEmail);
 }
 
 /* ^^^^ START FUNCTIONS ^^^^ */
@@ -78,7 +71,7 @@ function* checkUserSession(): Generator<
 
     yield getSnapshotFromUserAuth(userAuth);
   } catch (error) {
-    yield put(signInFailure(getErrorMessage(error)));
+    yield put(userActions.authFailure(getErrorMessage(error)));
   }
 }
 
@@ -86,9 +79,9 @@ function* signOut(): Generator<Promise<void> | PutEffect> {
   try {
     yield auth.signOut();
 
-    yield put(signOutSuccess());
+    yield put(userActions.SignOutSuccess());
   } catch (error) {
-    yield put(signInFailure(getErrorMessage(error)));
+    yield put(userActions.authFailure(getErrorMessage(error)));
   }
 }
 
@@ -108,7 +101,7 @@ function* signUp({
 
     yield getSnapshotFromUserAuth(user, name);
   } catch (error) {
-    yield put(signOutFailure(getErrorMessage(error)));
+    yield put(userActions.authFailure(getErrorMessage(error)));
   }
 }
 
@@ -130,9 +123,8 @@ function* getSnapshotFromUserAuth(
 
     const userData = userSnap.data();
 
-    const successFunction = registrationName ? signUpSuccess : signInSuccess;
     yield put(
-      successFunction({
+      userActions.authSuccess({
         id: userSnap ? userSnap.id : "",
         displayName: userData?.displayName,
         createdAt: userData?.createdAt,
@@ -140,7 +132,7 @@ function* getSnapshotFromUserAuth(
       })
     );
   } catch (error) {
-    yield put(signInFailure(getErrorMessage(error)));
+    yield put(userActions.authFailure(getErrorMessage(error)));
   }
 }
 
@@ -153,7 +145,7 @@ function* signInWithGoogle(): Generator {
 
     yield getSnapshotFromUserAuth(user);
   } catch (error) {
-    yield put(signInFailure(getErrorMessage(error)));
+    yield put(userActions.authFailure(getErrorMessage(error)));
   }
 }
 
@@ -169,7 +161,7 @@ function* signInWithEmail({
 
     yield getSnapshotFromUserAuth(user);
   } catch (error) {
-    yield put(signInFailure(getErrorMessage(error)));
+    yield put(userActions.authFailure(getErrorMessage(error)));
   }
 }
 

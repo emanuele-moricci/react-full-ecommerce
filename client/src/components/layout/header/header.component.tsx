@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
+import { userActions } from "src/redux/user/user.slice";
 import { selectCartHidden } from "src/redux/cart/cart.selectors";
 import { selectCurrentUser } from "src/redux/user/user.selectors";
-import { signOutStart } from "src/redux/user/user.actions";
 
 import CartIcon from "src/components/cart/cart-icon/cart-icon.component";
 import CartDropdown from "src/components/cart/cart-dropdown/cart-dropdown.component";
@@ -23,7 +23,10 @@ const Header = (): JSX.Element => {
         <Styled.OptionLink to="/shop">SHOP</Styled.OptionLink>
         <Styled.OptionLink to="/shop">CONTACT</Styled.OptionLink>
         {user ? (
-          <Styled.OptionLink as="div" onClick={() => dispatch(signOutStart())}>
+          <Styled.OptionLink
+            as="div"
+            onClick={() => dispatch(userActions.SignOutStart())}
+          >
             SIGN OUT
           </Styled.OptionLink>
         ) : (

@@ -1,4 +1,5 @@
-import { createStore, applyMiddleware, Middleware } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
+import { Middleware } from "redux";
 import { createLogger } from "redux-logger";
 import { persistStore } from "redux-persist";
 
@@ -18,11 +19,12 @@ if (process.env.NODE_ENV === "development") {
   middlewares.push(logger);
 }
 
-const store = createStore(rootReducer, applyMiddleware(...middlewares));
+const store = configureStore({ reducer: rootReducer, middleware: middlewares });
 const persistor = persistStore(store);
 const appStore = { store, persistor };
 
 sagaMiddleware.run(rootSaga);
 
 export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 export default appStore;

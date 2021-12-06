@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 import { useDispatch } from "react-redux";
-import { checkUserSession } from "src/redux/user/user.actions";
+import { userActions } from "src/redux/user/user.slice";
 import { fetchCollectionsStart } from "src/redux/shop/shop.actions";
 
 import Header from "src/components/layout/header/header.component";
@@ -11,7 +11,7 @@ const App = (): JSX.Element => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(checkUserSession());
+    dispatch(userActions.checkUserSession());
 
     dispatch(fetchCollectionsStart());
   }, [dispatch]);

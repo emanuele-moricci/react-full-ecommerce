@@ -1,10 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 
 import { useDispatch } from "react-redux";
-import {
-  googleSignInStart,
-  emailSignInStart,
-} from "src/redux/user/user.actions";
+import { userActions } from "src/redux/user/user.slice";
 
 import FormInput from "src/components/form/form-input/form-input.component";
 import CustomButton from "src/components/form/custom-button/custom-button.component";
@@ -33,7 +30,7 @@ const SignIn = (): JSX.Element => {
     submitFn = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
       e.preventDefault();
 
-      dispatch(emailSignInStart({ email, password }));
+      dispatch(userActions.EmailSignInStart({ email, password }));
     };
 
   return (
@@ -64,7 +61,7 @@ const SignIn = (): JSX.Element => {
           <CustomButton
             type="button"
             googleSignIn
-            onClick={() => dispatch(googleSignInStart())}
+            onClick={() => dispatch(userActions.googleSignInStart())}
           >
             Sign In with Google
           </CustomButton>

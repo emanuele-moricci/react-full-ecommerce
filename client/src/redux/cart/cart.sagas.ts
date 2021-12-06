@@ -7,8 +7,9 @@ import {
   select,
 } from "redux-saga/effects";
 
-import { User, UserActionTypes } from "../user/user.types";
+import { User } from "../user/user.types";
 import { CartActionTypes } from "./cart.types";
+import { userActions } from "../user/user.slice";
 import { clearCart, setCartFromDatabase } from "./cart.actions";
 import { getUserCartRef } from "src/db/firebase.utils";
 import {
@@ -34,11 +35,11 @@ export function* cartSagas() {
 }
 
 export function* onSignInSuccess() {
-  yield takeLatest(UserActionTypes.SIGN_IN_SUCCESS, checkCartFromDatabase);
+  yield takeLatest(userActions.authSuccess.type, checkCartFromDatabase);
 }
 
 export function* onSignOutSuccess() {
-  yield takeLatest(UserActionTypes.SIGN_OUT_SUCCESS, clearCartOnSignOut);
+  yield takeLatest(userActions.SignOutSuccess.type, clearCartOnSignOut);
 }
 
 export function* onCartChange() {
