@@ -1,3 +1,4 @@
+import { AnyAction } from "redux";
 import {
   all,
   call,
@@ -7,9 +8,13 @@ import {
   select,
 } from "redux-saga/effects";
 
-import { User } from "../user/user.types";
 import { cartActions } from "./cart.slice";
-import { userActions } from "../user/user.slice";
+import { userActions } from "src/redux/user/user.slice";
+import { Item } from "src/pages/shop/state/shop.types";
+import { User } from "src/redux/user/user.types";
+import { selectItems } from "./cart.selectors";
+import { selectCurrentUser } from "src/redux/user/user.selectors";
+
 import { getUserCartRef } from "src/db/firebase.utils";
 import {
   DocumentData,
@@ -18,10 +23,6 @@ import {
   getDoc,
   updateDoc,
 } from "@firebase/firestore";
-import { AnyAction } from "redux";
-import { selectCurrentUser } from "../user/user.selectors";
-import { selectItems } from "./cart.selectors";
-import { Item } from "../shop/shop.types";
 
 /* ∨∨∨∨ START FUNCTIONS ∨∨∨∨ */
 

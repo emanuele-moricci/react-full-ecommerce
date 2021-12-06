@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Item } from "../shop/shop.types";
 import { CartItem } from "./cart.types";
+import { Item } from "src/pages/shop/state/shop.types";
 import { addItem, deleteItemFromCart, removeItem } from "./cart.utils";
 
 type InitialStateType = {

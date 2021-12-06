@@ -5,7 +5,7 @@ import { selectItems } from "src/redux/cart/cart.selectors";
 import { cartActions } from "src/redux/cart/cart.slice";
 
 import CartItem from "src/components/cart/cart-item/cart-item.component";
-import CustomButton from "src/components/form/custom-button/custom-button.component";
+import CustomButton from "src/components/_common/form/custom-button/custom-button.component";
 
 import * as Styled from "./cart-dropdown.styles";
 

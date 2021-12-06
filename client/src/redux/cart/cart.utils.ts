@@ -1,4 +1,4 @@
-import { Item } from "src/redux/shop/shop.types";
+import { Item } from "src/pages/shop/state/shop.types";
 import { CartItem } from "src/redux/cart/cart.types";
 
 export const addItem = (

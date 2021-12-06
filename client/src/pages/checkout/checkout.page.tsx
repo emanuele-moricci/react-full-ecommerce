@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import { selectItems, selectCartTotal } from "src/redux/cart/cart.selectors";
-import { selectCheckoutPurchasing } from "src/redux/checkout/checkout.selectors";
+import { selectCheckoutPurchasing } from "src/pages/checkout/state/checkout.selectors";
 
-import CheckoutItem from "src/components/checkout/checkout-item/checkout-item.component";
-import StripeCheckoutButton from "src/components/checkout/stripe-button/stripe-button.component";
-import Spinner from "src/components/layout/spinner/spinner.component";
+import CheckoutItem from "src/pages/checkout/components/checkout-item/checkout-item.component";
+import StripeCheckoutButton from "src/pages/checkout/components/stripe-button/stripe-button.component";
+import Spinner from "src/components/_common/layout/spinner/spinner.component";
 
 import * as Styled from "./checkout.styles";
 

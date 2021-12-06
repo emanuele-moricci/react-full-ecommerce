@@ -1,4 +1,4 @@
-import Directory from "src/components/directory/directory.component";
+import Directory from "src/pages/home/components/directory.component";
 
 import * as Styled from "./home.styles";
 

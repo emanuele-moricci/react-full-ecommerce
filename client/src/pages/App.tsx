@@ -2,9 +2,9 @@ import { useEffect } from "react";
 
 import { useDispatch } from "react-redux";
 import { userActions } from "src/redux/user/user.slice";
-import { shopActions } from "src/redux/shop/shop.slice";
+import { shopActions } from "src/pages/shop/state/shop.slice";
 
-import Header from "src/components/layout/header/header.component";
+import Header from "src/components/_common/layout/header/header.component";
 import Routes from "src/pages/routes";
 
 const App = (): JSX.Element => {

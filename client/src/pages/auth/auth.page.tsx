@@ -1,5 +1,5 @@
-import SignIn from "src/components/auth/sign-in/sign-in.component";
-import SignUp from "src/components/auth/sign-up/sign-up.component";
+import SignIn from "src/pages/auth/components/sign-in/sign-in.component";
+import SignUp from "src/pages/auth/components/sign-up/sign-up.component";
 
 import * as Styled from "./auth.styles";
 

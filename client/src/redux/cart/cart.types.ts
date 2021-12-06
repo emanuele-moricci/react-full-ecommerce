@@ -1,4 +1,4 @@
-import { Item } from "src/redux/shop/shop.types";
+import { Item } from "src/pages/shop/state/shop.types";
 
 export type CartItem = Item & {
   quantity: number;

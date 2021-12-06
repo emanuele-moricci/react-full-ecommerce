@@ -11,7 +11,7 @@ import App from "src/pages/App";
 
 import * as serviceWorker from "src/pwa/serviceWorkerRegistration";
 
-import GlobalStyles from "./assets/global.styles";
+import GlobalStyles from "src/assets/global.styles";
 
 ReactDOM.render(
   <React.StrictMode>
