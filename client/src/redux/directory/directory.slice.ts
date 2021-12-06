@@ -1,6 +1,11 @@
-import { AnyAction } from "redux";
+import { createSlice } from "@reduxjs/toolkit";
+import { Section } from "./directory.types";
 
-const INITIAL_STATE = {
+type InitialStateType = {
+  sections: Section[];
+};
+
+const initialState: InitialStateType = {
   sections: [
     {
       title: "hats",
@@ -37,11 +42,11 @@ const INITIAL_STATE = {
   ],
 };
 
-const directoryReducer = (state = INITIAL_STATE, { type }: AnyAction) => {
-  switch (type) {
-    default:
-      return state;
-  }
-};
+const slice = createSlice({
+  name: "shop",
+  initialState,
+  reducers: {},
+});
 
-export default directoryReducer;
+export const shopActions = slice.actions;
+export default slice.reducer;
