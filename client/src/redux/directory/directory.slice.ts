@@ -43,10 +43,10 @@ const initialState: InitialStateType = {
 };
 
 const slice = createSlice({
-  name: "shop",
+  name: "directory",
   initialState,
   reducers: {},
 });
 
-export const shopActions = slice.actions;
+export const directoryActions = slice.actions;
 export default slice.reducer;
